@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
 import {View, Text, Button} from 'react-native';
 import {Navigation} from 'react-native-navigation';
-import {useTaskListStore} from './store/TaskList.store';
 
 export const TaskList = (props: any) => {
-  const {count, increment} = useTaskListStore();
-  useEffect(() => {});
+  const {count, increment} = props.taskListStore;
+  useEffect(() => {}, []);
   return (
     <View style={{flex: 1}}>
       <Text>{`count: ${count}`}</Text>

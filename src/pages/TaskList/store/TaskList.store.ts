@@ -1,7 +1,9 @@
 import {observable, action, makeObservable} from 'mobx';
-import React, {useContext} from 'react';
-export class TaskListStore {
+// import React, {useContext} from 'react';
+import {IStore} from '@/utils/baseStore';
+export class TaskListStore extends IStore {
   constructor() {
+    super();
     makeObservable(this, {
       count: observable,
       increment: action.bound,
@@ -14,8 +16,8 @@ export class TaskListStore {
     this.count += 1;
   }
 }
-const store = new TaskListStore();
-export const useTaskListStore = () => {
-  const context = React.createContext(store);
-  return useContext(context);
-};
+// export const store = new TaskListStore();
+// export const useTaskListStore = () => {
+//   const context = React.createContext(store);
+//   return useContext(context);
+// };

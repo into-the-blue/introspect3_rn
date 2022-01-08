@@ -1,3 +1,6 @@
 import {TaskList} from './TaskList.view';
 import {connect} from '@/utils/connect';
-export const TaskListPage = connect(TaskList);
+import {TaskListStore} from './store/TaskList.store';
+export const TaskListPage = connect({
+  taskListStore: TaskListStore.instance(),
+})(TaskList);
