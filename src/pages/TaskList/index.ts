@@ -1,2 +1,3 @@
 import {TaskList} from './TaskList.view';
-export {TaskList};
+import {connect} from '@/utils/connect';
+export const TaskListPage = connect(TaskList);

@@ -1,3 +1,3 @@
 import {TaskDetail} from './TaskDetail.view';
-
-export {TaskDetail};
+import {connect} from '@/utils/connect';
+export const TaskDetailPage = connect(TaskDetail);
