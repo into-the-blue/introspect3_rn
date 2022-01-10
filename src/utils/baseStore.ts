@@ -1,24 +1,22 @@
-import {createContext} from 'react';
 export class IStore {
-  static _reserved?: IStore;
+  private static reservedStoreKey = 'reserved';
+  private static _stores: {[key: string]: any} = {};
   static instance<K extends keyof IStore>(initialParams?: Pick<IStore, K>) {
     return new this({...initialParams});
-    // return new IStore();
   }
   static get getReservedStore() {
-    if (!this._reserved) {
-      this._reserved = new this();
+    return this.getNamedStore(this.reservedStoreKey);
+  }
+  static getNamedStore(name: string) {
+    if (!this._stores[name]) {
+      this._stores[name] = new this();
     }
-    return this._reserved!;
+    return this._stores[name];
   }
   constructor(initialParams?: any) {
     if (typeof initialParams !== 'undefined') {
       Object.assign(this, initialParams);
     }
   }
-  useContextStore() {
-    const context = createContext(IStore.getReservedStore);
-    return context;
-    // return useContext(context);
-  }
+  reset() {}
 }

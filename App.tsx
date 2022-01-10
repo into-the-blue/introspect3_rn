@@ -9,8 +9,8 @@
  */
 
 import {Navigation} from 'react-native-navigation';
-import {TaskListPage} from './src/pages/TaskList';
-import {TaskDetailPage} from './src/pages/TaskDetail';
+import {TaskListPage} from './src/modules';
+import {TaskDetailPage} from './src/modules/TaskDetail';
 
 Navigation.registerComponent('TaskDetail', () => TaskDetailPage);
 Navigation.registerComponent('TaskList', () => TaskListPage);

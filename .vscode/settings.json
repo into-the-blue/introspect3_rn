@@ -1,3 +1,4 @@
 {
+    "vsintellicode.features.python.deepLearning": "enabled",
     "typescript.tsdk": "./node_modules/typescript/lib"
 }
