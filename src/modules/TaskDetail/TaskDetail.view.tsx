@@ -1,9 +1,31 @@
-import React from 'react';
-import {View, Text} from 'react-native';
-export const TaskDetail = () => {
+import React, {useEffect} from 'react';
+import {View, Button, Text, StyleSheet} from 'react-native';
+import {NavigationComponentProps} from 'react-native-navigation';
+import {TaskDetailStore} from './store/TaskDetail.store';
+import {TaskDetailController} from './TaskDetail.controller';
+interface ITaskDetailProps extends NavigationComponentProps {
+  store: TaskDetailStore;
+  controller: TaskDetailController;
+}
+
+export const TaskDetail = (props: ITaskDetailProps) => {
+  const {controller} = props;
+  const {count} = props.store;
+  useEffect(() => {
+    controller.viewDidMount();
+
+    return () => {
+      controller.viewWillUnmount();
+    };
+  }, [controller]);
   return (
-    <View style={{flex: 1}}>
-      <Text>{'Task Detail Page'}</Text>
+    <View style={styles.container}>
+      <Text>{`${count}`}</Text>
+      <Button title="increase" onPress={props.controller.onPressButton} />
     </View>
   );
 };
+TaskDetail.displayName = 'TaskDetail';
+const styles = StyleSheet.create({
+  container: {flex: 1, alignItems: 'center'},
+});
