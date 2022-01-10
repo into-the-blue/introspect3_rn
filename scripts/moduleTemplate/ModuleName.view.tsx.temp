@@ -1,0 +1,31 @@
+import React, {useEffect} from 'react';
+import {View, Button, Text, StyleSheet} from 'react-native';
+import {NavigationComponentProps} from 'react-native-navigation';
+import {[ModuleName]Store} from './store/[ModuleName].store';
+import {[ModuleName]Controller} from './[ModuleName].controller';
+interface I[ModuleName]Props extends NavigationComponentProps {
+  store: [ModuleName]Store;
+  controller: [ModuleName]Controller;
+}
+
+export const [ModuleName] = (props: I[ModuleName]Props) => {
+  const {controller} = props;
+  const {count} = props.store;
+  useEffect(() => {
+    controller.viewDidMount();
+
+    return () => {
+      controller.viewWillUnmount();
+    };
+  }, [controller]);
+  return (
+    <View style={styles.container}>
+      <Text>{`${count}`}</Text>
+      <Button title="increase" onPress={props.controller.onPressButton} />
+    </View>
+  );
+};
+[ModuleName].displayName = '[ModuleName]';
+const styles = StyleSheet.create({
+  container: {flex: 1, alignItems: 'center'},
+});

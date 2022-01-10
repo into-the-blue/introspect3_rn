@@ -1,0 +1,2 @@
+export {[ModuleName]} from './[ModuleName].view';
+export {[ModuleName]Controller} from './[ModuleName].controller';

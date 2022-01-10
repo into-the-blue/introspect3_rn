@@ -1,0 +1,21 @@
+import {IService} from '@/utils';
+import {[ModuleName]Store} from '@/stores';
+
+export class [ModuleName]Service extends IService {
+  store: [ModuleName]Store;
+  constructor(store: [ModuleName]Store) {
+    super();
+    this.store = store;
+  }
+  static new() {
+    return new this([ModuleName]Store.getReservedStore);
+  }
+
+  increment = () => {
+    this.store.increment();
+  };
+
+  resetStore = () => {
+    this.store.reset();
+  };
+}
