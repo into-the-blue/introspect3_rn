@@ -10,11 +10,11 @@ export class TaskListController extends IController {
     return new this(TaskListService.new());
   }
 
-  onPressButton() {
+  onPressButton = () => {
     this.service.increment();
-  }
-  viewDidMount() {}
-  viewWillUnmount() {
+  };
+  viewDidMount = () => {};
+  viewWillUnmount = () => {
     this.service.resetStore();
-  }
+  };
 }

@@ -10,11 +10,11 @@ export class TaskDetailController extends IController {
     return new this(TaskDetailService.new());
   }
 
-  onPressButton() {
+  onPressButton = () => {
     this.service.increment();
-  }
-  viewDidMount() {}
-  viewWillUnmount() {
+  };
+  viewDidMount = () => {};
+  viewWillUnmount = () => {
     this.service.resetStore();
-  }
+  };
 }
