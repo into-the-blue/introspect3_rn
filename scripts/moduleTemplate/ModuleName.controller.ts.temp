@@ -10,11 +10,11 @@ export class [ModuleName]Controller extends IController {
     return new this([ModuleName]Service.new());
   }
 
-  onPressButton() {
+  onPressButton = () => {
     this.service.increment();
-  }
-  viewDidMount() {}
-  viewWillUnmount() {
+  };
+  viewDidMount = () => {};
+  viewWillUnmount = () => {
     this.service.resetStore();
-  }
+  };
 }

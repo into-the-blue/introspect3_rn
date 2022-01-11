@@ -103,7 +103,7 @@ def linkConfig(module_name):
     module_str2 = "import {[ModuleName], [ModuleName]Controller} from './[ModuleName]';".replace(
         '[ModuleName]', module_name)
     module_str3 = """export const [ModuleName]Page = connect([ModuleName]Controller.new(), {
-  store: [ModuleName]Store,
+  store: [ModuleName]Store.getReservedStore,
 })([ModuleName]);""".replace('[ModuleName]', module_name)
     _writeLineUpon(module_hook_pth, {MODULE_STORE_HOOK: module_str1,
                    MODULE_VIEW_CONTROLLER_HOOK: module_str2, MODULE_CONNECT_HOOK: module_str3})
