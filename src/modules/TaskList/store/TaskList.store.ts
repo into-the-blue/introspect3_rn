@@ -1,18 +1,18 @@
 import {observable, action, makeObservable} from 'mobx';
-// import React, {useContext} from 'react';
 import {IStore} from '@/utils';
+import {ITask} from '@/types';
 export class TaskListStore extends IStore {
   constructor() {
     super();
     makeObservable(this, {
-      count: observable,
-      increment: action.bound,
+      tasks: observable,
+      setTasks: action.bound,
     });
   }
 
-  count: number = 0;
+  tasks: ITask[] = [];
 
-  increment = () => {
-    this.count += 1;
+  setTasks = (data: ITask[]) => {
+    this.tasks = data;
   };
 }

@@ -1,5 +1,6 @@
 import {IController} from '@/utils';
 import {TaskListService} from '@/services';
+import {ITask} from '@/types';
 export class TaskListController extends IController {
   service: TaskListService;
   constructor(service: TaskListService) {
@@ -10,11 +11,16 @@ export class TaskListController extends IController {
     return new this(TaskListService.new());
   }
 
-  onPressButton = () => {
-    this.service.increment();
+  viewDidMount = () => {
+    this.queryTasks();
   };
-  viewDidMount = () => {};
   viewWillUnmount = () => {
     this.service.resetStore();
   };
+
+  queryTasks = () => {
+    this.service.queryTasks();
+  };
+
+  onPressTaskCard = (task: ITask) => {};
 }
