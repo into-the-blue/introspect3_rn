@@ -76,13 +76,15 @@ def writeToTargetDir(templates, module_name):
         (module_path/module_name/pth).write_text(txt)
 
 
-def _writeLineUpon(pth, pattern, txt):
+def _writeLineUpon(pth, pattern_obj):
+    pttns = pattern_obj.keys()
     with open(pth, 'r+') as f:
         lines = f.readlines()
         to_write = []
         for line in lines:
-            if pattern in line:
-                to_write.append(txt+'\n')
+            for pattern in pttns:
+                if pattern in line:
+                    to_write.append(pattern_obj[pattern]+'\n')
             to_write.append(line)
         f.seek(0)
         f.truncate()
@@ -93,24 +95,23 @@ def _writeLineUpon(pth, pattern, txt):
 def linkConfig(module_name):
     store_str = "export {[ModuleName]Store} from '@/modules/[ModuleName]/store/[ModuleName].store';".replace(
         '[ModuleName]', module_name)
-    _writeLineUpon(store_hook_pth, STORE_HOOK, store_str)
+    _writeLineUpon(store_hook_pth, {STORE_HOOK: store_str})
     service_str = "export {[ModuleName]Service} from '@/modules/[ModuleName]/service/[ModuleName].service';".replace(
         '[ModuleName]', module_name)
-    _writeLineUpon(service_hook_pth, SERVICE_HOOK, service_str)
+    _writeLineUpon(service_hook_pth, {SERVICE_HOOK: service_str})
     module_str1 = "  [ModuleName]Store,".replace('[ModuleName]', module_name)
     module_str2 = "import {[ModuleName], [ModuleName]Controller} from './[ModuleName]';".replace(
         '[ModuleName]', module_name)
     module_str3 = """export const [ModuleName]Page = connect([ModuleName]Controller.new(), {
   store: [ModuleName]Store,
 })([ModuleName]);""".replace('[ModuleName]', module_name)
-    _writeLineUpon(module_hook_pth, MODULE_STORE_HOOK, module_str1)
-    _writeLineUpon(module_hook_pth, MODULE_VIEW_CONTROLLER_HOOK, module_str2)
-    _writeLineUpon(module_hook_pth, MODULE_CONNECT_HOOK, module_str3)
+    _writeLineUpon(module_hook_pth, {MODULE_STORE_HOOK: module_str1,
+                   MODULE_VIEW_CONTROLLER_HOOK: module_str2, MODULE_CONNECT_HOOK: module_str3})
     app_str1 = "  [ModuleName]Page,".replace('[ModuleName]', module_name)
     app_str2 = "Navigation.registerComponent('[ModuleName]', () => [ModuleName]Page);".replace(
         '[ModuleName]', module_name)
-    _writeLineUpon(app_hook_pth, APP_PAGE_HOOK, app_str1)
-    _writeLineUpon(app_hook_pth, APP_NAVIGATION_HOOK, app_str2)
+    _writeLineUpon(
+        app_hook_pth, {APP_PAGE_HOOK: app_str1, APP_NAVIGATION_HOOK: app_str2})
 
 
 try:
