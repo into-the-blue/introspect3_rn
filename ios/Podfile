@@ -12,6 +12,12 @@ target 'introspect3_rn' do
     :hermes_enabled => false
   )
 
+  # NOTE: Do not remove, needed to keep WatermelonDB compiling:
+  pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi', :modular_headers => true
+  # NOTE: This is required as of v0.23
+  pod 'simdjson', path: '../node_modules/@nozbe/simdjson'
+
+
   target 'introspect3_rnTests' do
     inherit! :complete
     # Pods for testing
