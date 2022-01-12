@@ -1,14 +1,15 @@
 import {IController} from '@/utils';
 import {TaskListService} from '@/services';
 import {ITask} from '@/types';
+import {NavigationProp} from '@react-navigation/native';
 export class TaskListController extends IController {
   service: TaskListService;
   constructor(service: TaskListService) {
     super();
     this.service = service;
   }
-  static new() {
-    return new this(TaskListService.new());
+  static new(_navigation: NavigationProp<any>) {
+    return new this(TaskListService.new(_navigation));
   }
 
   viewDidMount = () => {
@@ -22,5 +23,7 @@ export class TaskListController extends IController {
     this.service.queryTasks();
   };
 
-  onPressTaskCard = (task: ITask) => {};
+  onPressTaskCard = (_task: ITask) => {
+    this.service.goToTaskDetailPage();
+  };
 }

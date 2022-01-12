@@ -1,5 +1,5 @@
 export class IController {
-  static new() {}
+  static new(_serviceParams?: any) {}
   viewDidMount() {}
   viewWillUnmount() {}
 }

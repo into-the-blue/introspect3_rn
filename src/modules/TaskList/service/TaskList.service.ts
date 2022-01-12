@@ -1,6 +1,7 @@
 import {IService} from '@/utils';
 import {TaskListStore} from '@/stores';
 import {ITask} from '@/types';
+import {NavigationProp} from '@react-navigation/native';
 
 const TEST_TASKS: ITask[] = [
   {
@@ -14,18 +15,28 @@ const TEST_TASKS: ITask[] = [
 ];
 export class TaskListService extends IService {
   store: TaskListStore;
-  constructor(store: TaskListStore) {
+  navigation: NavigationProp<any>;
+
+  constructor(
+    store: TaskListStore,
+    _navigation: NavigationProp<any>,
+    ..._args: any[]
+  ) {
     super();
     this.store = store;
+    this.navigation = _navigation!;
   }
-  static new() {
-    return new this(TaskListStore.getReservedStore);
+  static new(_navigation: NavigationProp<any>, ...args: any[]) {
+    return new this(TaskListStore.getReservedStore, _navigation, ...args);
   }
 
   queryTasks = async () => {
     this.store.setTasks(new Array(10).fill(TEST_TASKS[0]));
   };
 
+  goToTaskDetailPage = () => {
+    this.navigation.navigate('TaskDetail');
+  };
   resetStore = () => {
     this.store.reset();
   };

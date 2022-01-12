@@ -1,18 +1,20 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import {StyleSheet, View, Text, Image} from 'react-native';
+import {StyleSheet, View, Text, Image, TouchableHighlight} from 'react-native';
 import {ITask} from '@/types';
 interface IProps {
   task: ITask;
   onPress: (task: ITask) => void;
 }
 
-export const TaskListCard = observer(({task}: IProps) => {
+export const TaskListCard = observer(({task, onPress}: IProps) => {
   return (
-    <View style={styles.cardContainer}>
-      <Image style={styles.image} source={{uri: task.imageUrl}} />
-      <Text>{task.title}</Text>
-    </View>
+    <TouchableHighlight onPress={() => onPress(task)}>
+      <View style={styles.cardContainer}>
+        <Image style={styles.image} source={{uri: task.imageUrl}} />
+        <Text>{task.title}</Text>
+      </View>
+    </TouchableHighlight>
   );
 });
 
