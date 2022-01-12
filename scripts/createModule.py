@@ -23,7 +23,7 @@ MODULE_CONNECT_HOOK = '// <HOOK> connect module here </HOOK>'
 
 # App
 APP_PAGE_HOOK = '// <HOOK> import new Page here </HOOK>'
-APP_NAVIGATION_HOOK = '// <HOOK> register new page here </HOOK>'
+APP_NAVIGATION_HOOK = '/* <HOOK> register new page here </HOOK> */'
 
 
 def getModuleName():
@@ -102,13 +102,13 @@ def linkConfig(module_name):
     module_str1 = "  [ModuleName]Store,".replace('[ModuleName]', module_name)
     module_str2 = "import {[ModuleName], [ModuleName]Controller} from './[ModuleName]';".replace(
         '[ModuleName]', module_name)
-    module_str3 = """export const [ModuleName]Page = connect([ModuleName]Controller.new(), {
+    module_str3 = """export const [ModuleName]Page = connect([ModuleName]Controller, {
   store: [ModuleName]Store.getReservedStore,
 })([ModuleName]);""".replace('[ModuleName]', module_name)
     _writeLineUpon(module_hook_pth, {MODULE_STORE_HOOK: module_str1,
                    MODULE_VIEW_CONTROLLER_HOOK: module_str2, MODULE_CONNECT_HOOK: module_str3})
     app_str1 = "  [ModuleName]Page,".replace('[ModuleName]', module_name)
-    app_str2 = "Navigation.registerComponent('[ModuleName]', () => [ModuleName]Page);".replace(
+    app_str2 = "        <Stack.Screen name={'[ModuleName]'} component={[ModuleName]Page} />".replace(
         '[ModuleName]', module_name)
     _writeLineUpon(
         app_hook_pth, {APP_PAGE_HOOK: app_str1, APP_NAVIGATION_HOOK: app_str2})

@@ -1,14 +1,22 @@
 import {IService} from '@/utils';
 import {[ModuleName]Store} from '@/stores';
+import {NavigationProp} from '@react-navigation/native';
 
 export class [ModuleName]Service extends IService {
   store: [ModuleName]Store;
-  constructor(store: [ModuleName]Store) {
+  navigation: NavigationProp<any>;
+
+  constructor(
+    store: [ModuleName]Store,
+    _navigation: NavigationProp<any>,
+    ..._args: any[]
+  ) {
     super();
     this.store = store;
+    this.navigation = _navigation!;
   }
-  static new() {
-    return new this([ModuleName]Store.getReservedStore);
+  static new(_navigation: NavigationProp<any>, ...args: any[]) {
+    return new this([ModuleName]Store.getReservedStore, _navigation, ...args);
   }
 
   increment = () => {
