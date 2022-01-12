@@ -7,14 +7,24 @@
  *
  * @format
  */
-
-import {Navigation} from 'react-native-navigation';
+import React from 'react';
+import {Text, View} from 'react-native';
 import {
   TaskListPage,
   TaskDetailPage,
   // <HOOK> import new Page here </HOOK>
 } from './src/modules';
 
-Navigation.registerComponent('TaskList', () => TaskListPage);
-Navigation.registerComponent('TaskDetail', () => TaskDetailPage);
+// Navigation.registerComponent('TaskList', () => TaskListPage);
+// Navigation.registerComponent('TaskDetail', () => TaskDetailPage);
 // <HOOK> register new page here </HOOK>
+
+const App = () => {
+  return (
+    <View>
+      <Text>{'hello world'}</Text>
+    </View>
+  );
+};
+
+export default App;

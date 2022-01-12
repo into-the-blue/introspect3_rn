@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
-import {NavigationComponentProps} from 'react-native-navigation';
 import {TaskListStore} from './store/TaskList.store';
 import {TaskListController} from './TaskList.controller';
 import {ITask} from '@/types';
 import {TaskListCard} from './components/TaskListCard';
-interface ITaskListProps extends NavigationComponentProps {
+interface ITaskListProps {
   store: TaskListStore;
   controller: TaskListController;
 }
