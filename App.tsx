@@ -8,23 +8,24 @@
  * @format
  */
 import React from 'react';
-import {Text, View} from 'react-native';
 import {
   TaskListPage,
   TaskDetailPage,
   // <HOOK> import new Page here </HOOK>
 } from './src/modules';
 import {NavigationContainer} from '@react-navigation/native';
-// Navigation.registerComponent('TaskList', () => TaskListPage);
-// Navigation.registerComponent('TaskDetail', () => TaskDetailPage);
-// <HOOK> register new page here </HOOK>
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <View>
-        <Text>{'hello world'}</Text>
-      </View>
+      <Stack.Navigator initialRouteName={'TaskList'}>
+        <Stack.Screen name={'TaskList'} component={TaskListPage} />
+        <Stack.Screen name={'TaskDetail'} component={TaskDetailPage} />
+        {/* <HOOK> register new page here </HOOK> */}
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

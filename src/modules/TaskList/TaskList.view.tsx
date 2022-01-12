@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
+import {NavigationProp} from '@react-navigation/native';
 import {TaskListStore} from './store/TaskList.store';
 import {TaskListController} from './TaskList.controller';
 import {ITask} from '@/types';
 import {TaskListCard} from './components/TaskListCard';
 interface ITaskListProps {
+  navigation: NavigationProp<any>;
   store: TaskListStore;
   controller: TaskListController;
 }
@@ -14,7 +16,6 @@ export const TaskList = (props: ITaskListProps) => {
   const {tasks} = props.store;
   useEffect(() => {
     controller.viewDidMount();
-
     return () => {
       controller.viewWillUnmount();
     };
