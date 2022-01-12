@@ -14,17 +14,17 @@ import {
   TaskDetailPage,
   // <HOOK> import new Page here </HOOK>
 } from './src/modules';
-
+import {NavigationContainer} from '@react-navigation/native';
 // Navigation.registerComponent('TaskList', () => TaskListPage);
 // Navigation.registerComponent('TaskDetail', () => TaskDetailPage);
 // <HOOK> register new page here </HOOK>
 
-const App = () => {
+export default function App() {
   return (
-    <View>
-      <Text>{'hello world'}</Text>
-    </View>
+    <NavigationContainer>
+      <View>
+        <Text>{'hello world'}</Text>
+      </View>
+    </NavigationContainer>
   );
-};
-
-export default App;
+}

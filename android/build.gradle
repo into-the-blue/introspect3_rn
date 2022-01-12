@@ -8,8 +8,8 @@ buildscript {
         compileSdkVersion = 30
         targetSdkVersion = 30
         ndkVersion = "21.4.7075529"
-        // watermelon db
-        kotlinVersion = '1.3.50'
+        // watermelon db react native screens
+        kotlinVersion = '1.4.10'
     }
     repositories {
         google()
