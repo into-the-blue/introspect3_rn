@@ -26,9 +26,28 @@ APP_PAGE_HOOK = '// <HOOK> import new Page here </HOOK>'
 APP_NAVIGATION_HOOK = '/* <HOOK> register new page here </HOOK> */'
 
 
+def print_blue(msg):
+    print('\033[1;34m'+msg+'\033[0m')
+
+
+def print_green(msg):
+    print('\033[1;32m'+msg+'\033[0m')
+
+
+def print_yellow(msg):
+    print('\033[1;33m'+msg+'\033[0m')
+
+
+def print_red(msg):
+    print('\033[1;31m'+msg+'\033[0m')
+
+
 def getModuleName():
+    '''
+    receive module name, and convert it to capitalized camelcase
+    '''
     module_name = input(
-        'Plase input module Name (accepted format: module name or moduleName):')
+        '\033[1;34m'+'Plase input module Name (accepted format: module name or moduleName):'+'\033[0m')
     module_name = module_name.strip()
     if ' ' in module_name:
         module_name = ''.join(map(str.capitalize, module_name.split(' ')))
@@ -40,7 +59,17 @@ def getModuleName():
     return module_name
 
 
+def checkIfNameExisted(name):
+    res = Path(module_path/name).is_dir()
+    if res:
+        return 'Module name already occupied, please choose another name.'
+    return None
+
+
 def getTemplates(name: str):
+    '''
+    read templates and replace keyword with provided module name
+    '''
     files = temp_module_pth.iterdir()
     pths = []
     for f in files:
@@ -57,17 +86,23 @@ def getTemplates(name: str):
             'pth': str(pth),
             'content': txt
         })
-    print('Template content ready')
+    print_green('Template content ready')
     return constructed
 
 
 def _createDirs(module_name):
+    '''
+    create directorys
+    '''
     (module_path/module_name).mkdir()
     (module_path/module_name/'service').mkdir()
     (module_path/module_name/'store').mkdir()
 
 
 def writeToTargetDir(templates, module_name):
+    '''
+    write templates to target dir
+    '''
     _createDirs(module_name)
     for item in templates:
         pth, txt = item['pth'], item['content']
@@ -77,6 +112,9 @@ def writeToTargetDir(templates, module_name):
 
 
 def _writeLineUpon(pth, pattern_obj):
+    '''
+    write text upon matched patterns
+    '''
     pttns = pattern_obj.keys()
     with open(pth, 'r+') as f:
         lines = f.readlines()
@@ -93,6 +131,9 @@ def _writeLineUpon(pth, pattern_obj):
 
 
 def linkConfig(module_name):
+    '''
+    add config snippets
+    '''
     store_str = "export {[ModuleName]Store} from '@/modules/[ModuleName]/store/[ModuleName].store';".replace(
         '[ModuleName]', module_name)
     _writeLineUpon(store_hook_pth, {STORE_HOOK: store_str})
@@ -116,14 +157,18 @@ def linkConfig(module_name):
 
 try:
     module_name = getModuleName()
-    print(f'Module name: {module_name}')
+    print_blue(f'Module name: {module_name}')
+    res = checkIfNameExisted(module_name)
+    if res != None:
+        print_yellow(res)
+        exit()
     templates = getTemplates(module_name)
-    print('Templates ready')
+    print_green('Templates ready')
     writeToTargetDir(templates, module_name)
-    print('Module generated')
+    print_green('Module generated')
     linkConfig(module_name)
-    print('Module linked')
-    print('Done')
+    print_green('Module linked')
+    print_green('Done')
 
 except KeyboardInterrupt:
-    print('exit')
+    print_blue('exit')
