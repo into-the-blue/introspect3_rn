@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import {View, Button, Text, StyleSheet} from 'react-native';
+import {NavigationProp} from '@react-navigation/native';
 import {TaskDetailStore} from './store/TaskDetail.store';
 import {TaskDetailController} from './TaskDetail.controller';
 interface ITaskDetailProps {
+  navigation: NavigationProp<any>;
   store: TaskDetailStore;
   controller: TaskDetailController;
 }
