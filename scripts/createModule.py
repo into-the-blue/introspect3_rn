@@ -171,4 +171,4 @@ try:
     print_green('Done')
 
 except KeyboardInterrupt:
-    print_blue('exit')
+    print_blue('User interrupted')
