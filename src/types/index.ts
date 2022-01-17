@@ -1,5 +1,5 @@
 import React from 'react';
-
+export type {IXenoInjectedProps} from '../utils/xeno';
 export type IReactComponent<P = any> =
   | React.ClassicComponentClass<P>
   | React.ComponentClass<P>

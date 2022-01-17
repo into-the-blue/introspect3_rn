@@ -1,5 +1,5 @@
 import {ReplaySubject, of, from} from 'rxjs';
-import {mergeMap, switchMap} from 'rxjs/operators';
+import {mergeMap, switchMap, take} from 'rxjs/operators';
 import {TFutureTask} from './type';
 import {map2Array, toObservable} from './util';
 
@@ -133,12 +133,12 @@ class Handlers {
  * implementation 2: each time create a new subject
  */
 export class Xeno {
-  events: {[key: string]: Handlers} = {};
+  events: Map<string, Handlers> = new Map();
   _futureEvents: Map<string, TFutureTask> = new Map();
 
   _cleanFutureEvent = (eventName: string) => {
-    const task = this._futureEvents.get(eventName);
-    if (!task?.subject.closed) task?.subject.unsubscribe();
+    // const task = this._futureEvents.get(eventName);
+    // if (!task?.subject.closed) task?.subject.unsubscribe();
     this._futureEvents.delete(eventName);
   };
   _addFutureEvent = (
@@ -175,11 +175,11 @@ export class Xeno {
   };
 
   on = (eventName: string, handler: Function) => {
-    if (!this.events[eventName]) {
-      this.events[eventName] = new Handlers();
+    if (!this.events.get(eventName)) {
+      this.events.set(eventName, new Handlers());
     }
     this._checkIfHasFutureEvent(eventName, handler);
-    return this.events[eventName].addHandler(handler);
+    return this.events.get(eventName)!.addHandler(handler);
   };
 
   /**
@@ -189,12 +189,12 @@ export class Xeno {
    * implementation 2: each time create a new subject
    */
   trigger = (eventName: string, params?: any) => {
-    const handlerIns = this.events[eventName];
+    const handlerIns = this.events.get(eventName);
     const sub = new ReplaySubject<any>();
     if (!handlerIns || handlerIns.numOfListeners === 0) {
       // no handlers
       this._addFutureEvent(sub, eventName, params);
-      return sub;
+      return sub.pipe(take(1));
     }
     // exist handlers
     from(
@@ -207,12 +207,11 @@ export class Xeno {
       )
       .subscribe({
         next: res => {
-          if (!sub.closed) sub.next(res);
-        },
-        complete: () => {
-          if (!sub.closed) sub.unsubscribe();
+          if (!sub.closed) {
+            sub.next(res);
+          }
         },
       });
-    return sub;
+    return sub.pipe(take(handlerIns.numOfListeners));
   };
 }

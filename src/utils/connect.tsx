@@ -1,7 +1,10 @@
 import {observer} from 'mobx-react';
 import React, {useEffect} from 'react';
 import {IReactComponent} from '@/types';
+import {connectXeno, Xeno} from './xeno';
 
+const xenoIns = new Xeno();
+const withXeno = connectXeno(xenoIns);
 export const connect =
   (controllerCls: any, stores?: any) => (Comp: IReactComponent<any>) => {
     function Composed(props?: any) {
@@ -18,5 +21,5 @@ export const connect =
       );
     }
     Composed.displayName = 'Connected - ' + Comp.displayName;
-    return Composed;
+    return withXeno(Composed);
   };
