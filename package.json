@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/plugin-proposal-decorators": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.16.7",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.23",
