@@ -29,6 +29,17 @@ test('should receive single result', done => {
   });
 });
 
+test('listener should be removed', done => {
+  const remove = xeno.on('event1', listener1);
+  xeno.on('event1', listener2);
+  remove();
+  expect(xeno.events.get('event1')?.numOfListeners).toBe(1);
+  xeno.trigger('event1', 1).subscribe(res => {
+    expect(res).toBe('listener2 1');
+    done();
+  });
+});
+
 test('should receive multi results', done => {
   xeno.on('event1', listener1);
   xeno.on('event1', listener2);

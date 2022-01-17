@@ -11,6 +11,7 @@ class Handlers {
     const key = this._getKey();
     this._handlers.set(key, handler);
     const removeListener = () => {
+      if (!this._handlers.has(key)) return;
       this._handlers.delete(key);
       this._count--;
     };
