@@ -1,2 +1,4 @@
 export {[ModuleName]} from './[ModuleName].view';
 export {[ModuleName]Controller} from './[ModuleName].controller';
+export {[ModuleName]Service} from './service/[ModuleName].service';
+export {[ModuleName]Store} from './store/[ModuleName].store';

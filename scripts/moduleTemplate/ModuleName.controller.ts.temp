@@ -3,12 +3,12 @@ import {[ModuleName]Service} from '@/services';
 import {NavigationProp} from '@react-navigation/native';
 export class [ModuleName]Controller extends IController {
   service: [ModuleName]Service;
-  constructor(service: [ModuleName]Service) {
+  constructor({service}: {service: [ModuleName]Service}) {
     super();
     this.service = service;
   }
-  static new({navigation}: {navigation: NavigationProp<any>}) {
-    return new this([ModuleName]Service.new({navigation}));
+  static new(params: {service: [ModuleName]Service}) {
+    return new this(params);
   }
 
   onPressButton = () => {

@@ -1,6 +1,7 @@
 import {observable, action, makeObservable} from 'mobx';
 import {IStore} from '@/utils';
 export class [ModuleName]Store extends IStore {
+  name?: string = undefined;
   constructor() {
     super();
     makeObservable(this, {
@@ -13,5 +14,9 @@ export class [ModuleName]Store extends IStore {
 
   increment = () => {
     this.count += 1;
+  };
+
+  reset = () => {
+    [ModuleName]Store.removeNamedStore(this.name!);
   };
 }

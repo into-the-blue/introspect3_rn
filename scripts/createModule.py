@@ -17,8 +17,8 @@ STORE_HOOK = '// <HOOK> export new module store </HOOK>'
 SERVICE_HOOK = '// <HOOK> export new module service </HOOK>'
 
 # modules/index
-MODULE_STORE_HOOK = '// <HOOK> import module store here </HOOK>'
-MODULE_VIEW_CONTROLLER_HOOK = '// <HOOK> import module view controller here </HOOK>'
+# MODULE_STORE_HOOK = '// <HOOK> import module store here </HOOK>'
+MODULE_PROPERTIES_EXPORTS_HOOK = '// <HOOK> import module properties here </HOOK>'
 MODULE_CONNECT_HOOK = '// <HOOK> connect module here </HOOK>'
 
 # App
@@ -49,6 +49,7 @@ def getModuleName():
     module_name = input(
         '\033[1;34m'+'Plase input module Name (accepted format: module name or moduleName):'+'\033[0m')
     module_name = module_name.strip()
+    upper_cased = ''
     if ' ' in module_name:
         module_name = ''.join(map(str.capitalize, module_name.split(' ')))
     else:
@@ -140,14 +141,29 @@ def linkConfig(module_name):
     service_str = "export {[ModuleName]Service} from '@/modules/[ModuleName]/service/[ModuleName].service';".replace(
         '[ModuleName]', module_name)
     _writeLineUpon(service_hook_pth, {SERVICE_HOOK: service_str})
-    module_str1 = "  [ModuleName]Store,".replace('[ModuleName]', module_name)
-    module_str2 = "import {[ModuleName], [ModuleName]Controller} from './[ModuleName]';".replace(
+    # module_str1 = "  [ModuleName]Store,".replace('[ModuleName]', module_name)
+    module_str2 = '''import {
+  [ModuleName],
+  [ModuleName]Controller,
+  [ModuleName]Store,
+  [ModuleName]Service,
+} from './[ModuleName]';'''.replace(
         '[ModuleName]', module_name)
-    module_str3 = """export const [ModuleName]Page = connect([ModuleName]Controller, {
-  store: [ModuleName]Store.getReservedStore,
-})([ModuleName]);""".replace('[ModuleName]', module_name)
-    _writeLineUpon(module_hook_pth, {MODULE_STORE_HOOK: module_str1,
-                   MODULE_VIEW_CONTROLLER_HOOK: module_str2, MODULE_CONNECT_HOOK: module_str3})
+
+    module_str3 = """export const [ModuleName]Page = (() => {
+  const generateStoreController = ({navigation}: any) => {
+    const store = [ModuleName]Store.getNamedStore('[ModuleName]');
+    const service = [ModuleName]Service.new({store, navigation});
+    const controller = [ModuleName]Controller.new({service});
+    return {
+      controller,
+      store,
+    };
+  };
+  return connect(generateStoreController)([ModuleName]);
+})();""".replace('[ModuleName]', module_name)
+    _writeLineUpon(module_hook_pth, {
+                   MODULE_PROPERTIES_EXPORTS_HOOK: module_str2, MODULE_CONNECT_HOOK: module_str3})
     app_str1 = "  [ModuleName]Page,".replace('[ModuleName]', module_name)
     app_str2 = "        <Stack.Screen name={'[ModuleName]'} component={[ModuleName]Page} />".replace(
         '[ModuleName]', module_name)

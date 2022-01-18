@@ -17,8 +17,8 @@ export class [ModuleName]Service extends IService {
     this.store = store;
     this.navigation = navigation!;
   }
-  static new({navigation}: {navigation: NavigationProp<any>}) {
-    return new this({store: [ModuleName]Store.getReservedStore, navigation});
+  static new(args: {store: [ModuleName]Store; navigation: NavigationProp<any>}) {
+    return new this(args);
   }
 
   increment = () => {
