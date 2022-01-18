@@ -5,7 +5,7 @@ import {
   TaskListStore,
   TaskListService,
 } from './TaskList';
-// <HOOK> import module view controller here </HOOK>
+// <HOOK> import module properties here </HOOK>
 
 export const TaskListPage = (() => {
   const generateStoreController = ({navigation}: any) => {
