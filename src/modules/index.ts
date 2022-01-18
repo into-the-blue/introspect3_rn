@@ -1,17 +1,22 @@
 import {connect} from '@/utils';
 import {
+  TaskList,
+  TaskListController,
   TaskListStore,
-  TaskDetailStore,
-  // <HOOK> import module store here </HOOK>
-} from '@/stores';
-import {TaskList, TaskListController} from './TaskList';
-import {TaskDetail, TaskDetailController} from './TaskDetail';
+  TaskListService,
+} from './TaskList';
 // <HOOK> import module view controller here </HOOK>
 
-export const TaskListPage = connect(TaskListController, {
-  store: TaskListStore.getReservedStore,
-})(TaskList);
-export const TaskDetailPage = connect(TaskDetailController, {
-  store: TaskDetailStore.getReservedStore,
-})(TaskDetail);
+export const TaskListPage = (() => {
+  const generateStoreController = ({navigation}: any) => {
+    const store = TaskListStore.getNamedStore('TaskList');
+    const service = TaskListService.new({store, navigation});
+    const controller = TaskListController.new({service});
+    return {
+      controller,
+      store,
+    };
+  };
+  return connect(generateStoreController)(TaskList);
+})();
 // <HOOK> connect module here </HOOK>

@@ -17,22 +17,26 @@ export class TaskListService extends IService {
   store: TaskListStore;
   navigation: NavigationProp<any>;
 
-  constructor(
-    store: TaskListStore,
-    _navigation: NavigationProp<any>,
-    ..._args: any[]
-  ) {
+  constructor({
+    store,
+    navigation,
+  }: {
+    store: TaskListStore;
+    navigation: NavigationProp<any>;
+  }) {
     super();
     this.store = store;
-    this.navigation = _navigation!;
+    this.navigation = navigation!;
   }
-  static new(_navigation: NavigationProp<any>, ...args: any[]) {
-    return new this(TaskListStore.getReservedStore, _navigation, ...args);
+  static new(args: {store: TaskListStore; navigation: NavigationProp<any>}) {
+    return new this(args);
   }
 
   queryTasks = async () => {
     this.store.setTasks(new Array(10).fill(TEST_TASKS[0]));
   };
+
+  passTaskToDetailPage = () => {};
 
   goToTaskDetailPage = () => {
     this.navigation.navigate('TaskDetail');

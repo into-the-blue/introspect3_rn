@@ -133,32 +133,35 @@ class Handlers {
  * @class Xeno3
  * implementation 2: each time create a new subject
  */
-export class Xeno {
+export class Xeno<T> {
   events: Map<string, Handlers> = new Map();
   _futureEvents: Map<string, TFutureTask> = new Map();
 
-  _cleanFutureEvent = (eventName: string) => {
+  _cleanFutureEvent = <K extends keyof T>(eventName: K) => {
     // const task = this._futureEvents.get(eventName);
     // if (!task?.subject.closed) task?.subject.unsubscribe();
-    this._futureEvents.delete(eventName);
+    this._futureEvents.delete(eventName as string);
   };
-  _addFutureEvent = (
+  _addFutureEvent = <K extends keyof T>(
     subject: ReplaySubject<any>,
-    eventName: string,
-    params?: any,
+    eventName: K,
+    params?: T[K],
   ) => {
-    if (this._futureEvents.has(eventName)) {
+    if (this._futureEvents.has(eventName as string)) {
       // already existed a future event, will replace the old one
       this._cleanFutureEvent(eventName);
     }
-    this._futureEvents.set(eventName, {
+    this._futureEvents.set(eventName as string, {
       params,
       subject,
     });
   };
-  _executeFutureEvent = (eventName: string, handler: Function) => {
+  _executeFutureEvent = <K extends keyof T>(
+    eventName: K,
+    handler: Function,
+  ) => {
     //only first listener will receive event
-    const task = this._futureEvents.get(eventName)!;
+    const task = this._futureEvents.get(eventName as string)!;
     of(handler(task.params))
       .pipe(switchMap(toObservable))
       .subscribe({
@@ -169,18 +172,21 @@ export class Xeno {
       });
   };
 
-  _checkIfHasFutureEvent = (eventName: string, handler: Function) => {
-    if (this._futureEvents.has(eventName)) {
+  _checkIfHasFutureEvent = <K extends keyof T>(
+    eventName: K,
+    handler: Function,
+  ) => {
+    if (this._futureEvents.has(eventName as string)) {
       this._executeFutureEvent(eventName, handler);
     }
   };
 
-  on = (eventName: string, handler: Function) => {
-    if (!this.events.get(eventName)) {
-      this.events.set(eventName, new Handlers());
+  on = <K extends keyof T>(eventName: K, handler: Function) => {
+    if (!this.events.get(eventName as string)) {
+      this.events.set(eventName as string, new Handlers());
     }
     this._checkIfHasFutureEvent(eventName, handler);
-    return this.events.get(eventName)!.addHandler(handler);
+    return this.events.get(eventName as string)!.addHandler(handler);
   };
 
   /**
@@ -189,8 +195,8 @@ export class Xeno {
    * @memberof Xeno3
    * implementation 2: each time create a new subject
    */
-  trigger = (eventName: string, params?: any) => {
-    const handlerIns = this.events.get(eventName);
+  trigger = <K extends keyof T>(eventName: K, params?: T[K]) => {
+    const handlerIns = this.events.get(eventName as string);
     const sub = new ReplaySubject<any>();
     if (!handlerIns || handlerIns.numOfListeners === 0) {
       // no handlers

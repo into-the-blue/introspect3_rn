@@ -1,3 +1,2 @@
-export {TaskListService} from '@/modules/TaskList/service/TaskList.service';
-export {TaskDetailService} from '@/modules/TaskDetail/service/TaskDetail.service';
+export {TaskListService} from '@/modules/TaskList';
 // <HOOK> export new module service </HOOK>

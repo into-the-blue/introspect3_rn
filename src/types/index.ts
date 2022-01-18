@@ -1,5 +1,8 @@
 import React from 'react';
 export type {IXenoInjectedProps} from '../utils/xeno';
+import {TaskListEvents} from '../modules/TaskList/events';
+
+export type IEvents = TaskListEvents;
 export type IReactComponent<P = any> =
   | React.ClassicComponentClass<P>
   | React.ComponentClass<P>
@@ -44,3 +47,5 @@ export interface ITask extends IMetadata {
   details?: ITaskDetail[];
   feedbacks?: TFeedback[];
 }
+
+export type childOf<T> = new () => T;

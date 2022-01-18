@@ -1,3 +1,2 @@
-export {TaskListStore} from '@/modules/TaskList/store/TaskList.store';
-export {TaskDetailStore} from '@/modules/TaskDetail/store/TaskDetail.store';
+export {TaskListStore} from '@/modules/TaskList';
 // <HOOK> export new module store </HOOK>
