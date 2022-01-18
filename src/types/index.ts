@@ -1,8 +1,10 @@
 import React from 'react';
 export type {IXenoInjectedProps} from '../utils/xeno';
 import {TaskListEvents} from '../modules/TaskList/events';
+// <hook> import module events here </hook>
 
 export type IEvents = TaskListEvents;
+// <hook> add event type to end </hook>
 export type IReactComponent<P = any> =
   | React.ClassicComponentClass<P>
   | React.ComponentClass<P>
