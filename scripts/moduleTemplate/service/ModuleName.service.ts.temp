@@ -6,17 +6,19 @@ export class [ModuleName]Service extends IService {
   store: [ModuleName]Store;
   navigation: NavigationProp<any>;
 
-  constructor(
-    store: [ModuleName]Store,
-    _navigation: NavigationProp<any>,
-    ..._args: any[]
-  ) {
+  constructor({
+    store,
+    navigation,
+  }: {
+    store: [ModuleName]Store;
+    navigation: NavigationProp<any>;
+  }) {
     super();
     this.store = store;
-    this.navigation = _navigation!;
+    this.navigation = navigation!;
   }
-  static new(_navigation: NavigationProp<any>, ...args: any[]) {
-    return new this([ModuleName]Store.getReservedStore, _navigation, ...args);
+  static new({navigation}: {navigation: NavigationProp<any>}) {
+    return new this({store: [ModuleName]Store.getReservedStore, navigation});
   }
 
   increment = () => {

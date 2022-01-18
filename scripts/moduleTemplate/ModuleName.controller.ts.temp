@@ -7,8 +7,8 @@ export class [ModuleName]Controller extends IController {
     super();
     this.service = service;
   }
-  static new(_navigation: NavigationProp<any>) {
-    return new this([ModuleName]Service.new(_navigation));
+  static new({navigation}: {navigation: NavigationProp<any>}) {
+    return new this([ModuleName]Service.new({navigation}));
   }
 
   onPressButton = () => {
@@ -16,6 +16,7 @@ export class [ModuleName]Controller extends IController {
   };
   viewDidMount = () => {};
   viewWillUnmount = () => {
+    this.service.cleanListeners();
     this.service.resetStore();
   };
 }
