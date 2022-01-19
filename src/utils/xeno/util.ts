@@ -28,3 +28,4 @@ export const map2Array = (
   }
   return res;
 };
+export const isDev = process.env.NODE_ENV === 'development';
