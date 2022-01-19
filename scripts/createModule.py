@@ -218,7 +218,7 @@ try:
     print_green('Module generated')
     linkConfig(module_name, upper_cased)
     print_green('Module linked')
-    format_files()
+    format_files(module_name)
     print_green('All modified files formatted')
     print_green('Done')
 
