@@ -5,6 +5,7 @@ import {
   TaskListStore,
   TaskListService,
 } from './TaskList';
+import {Task, TaskController, TaskStore, TaskService} from './Task';
 // <HOOK> import module properties here </HOOK>
 
 export const TaskListPage = (() => {
@@ -18,5 +19,14 @@ export const TaskListPage = (() => {
     };
   };
   return connect(generateStoreController)(TaskList);
+})();
+export const TaskPage = (() => {
+  const generateStoreController = ({navigation}: any) => {
+    const store = TaskStore.getNamedStore('Task');
+    const service = TaskService.new({store, navigation});
+    const controller = TaskController.new({service});
+    return {controller, store};
+  };
+  return connect(generateStoreController)(Task);
 })();
 // <HOOK> connect module here </HOOK>

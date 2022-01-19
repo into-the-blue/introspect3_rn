@@ -39,7 +39,7 @@ export class TaskListService extends IService {
   passTaskToDetailPage = () => {};
 
   goToTaskDetailPage = () => {
-    this.navigation.navigate('TaskDetail');
+    this.navigation.navigate('Task');
   };
   resetStore = () => {
     this.store.reset();
