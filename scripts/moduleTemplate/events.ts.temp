@@ -1,0 +1,4 @@
+import {[ModuleName]Store} from './store/[ModuleName].store';
+export type [ModuleName]Events = {
+  [ModuleNameUpperCased]_INITIAL_DATA: Pick<[ModuleName]Store, 'count'>;
+};

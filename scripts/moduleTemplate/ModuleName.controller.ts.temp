@@ -1,6 +1,5 @@
 import {IController} from '@/utils';
 import {[ModuleName]Service} from '@/services';
-import {NavigationProp} from '@react-navigation/native';
 export class [ModuleName]Controller extends IController {
   service: [ModuleName]Service;
   constructor({service}: {service: [ModuleName]Service}) {
