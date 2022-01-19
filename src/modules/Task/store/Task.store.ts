@@ -1,19 +1,25 @@
 import {observable, action, makeObservable} from 'mobx';
 import {IStore} from '@/utils';
+import {ITask} from '@/types';
 export class TaskStore extends IStore {
   name?: string = undefined;
+
   constructor() {
     super();
     makeObservable(this, {
-      count: observable,
-      increment: action.bound,
+      task: observable,
+      isLoading: observable,
+      setLoading: action.bound,
+      setTask: action.bound,
     });
   }
-
-  count: number = 0;
-
-  increment = () => {
-    this.count += 1;
+  isLoading: boolean = true;
+  task?: ITask = undefined;
+  setLoading = (loading: boolean) => {
+    this.isLoading = loading;
+  };
+  setTask = (task: ITask) => {
+    this.task = task;
   };
 
   reset = () => {

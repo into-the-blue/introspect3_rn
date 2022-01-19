@@ -36,9 +36,12 @@ export class TaskListService extends IService {
     this.store.setTasks(new Array(10).fill(TEST_TASKS[0]));
   };
 
-  passTaskToDetailPage = () => {};
+  passTaskToDetailPage = (task: ITask) => {
+    this.trigger('TASK_INITIAL_DATA', {task});
+  };
 
-  goToTaskDetailPage = () => {
+  goToTaskDetailPage = (task: ITask) => {
+    this.passTaskToDetailPage(task);
     this.navigation.navigate('Task');
   };
   resetStore = () => {

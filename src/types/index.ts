@@ -31,15 +31,15 @@ export interface TFeedback extends IMetadata {
   targetId: string;
   tag: ITag;
 }
-export interface ITaskSlot extends IMetadata {
-  taskDetailId: string;
+export interface ITaskItemSlot extends IMetadata {
+  taskItemId: string;
   feedbacks?: TFeedback[];
 }
-export interface ITaskDetail extends IMetadata {
+export interface ITaskItem extends IMetadata {
   taskId: string;
   title: string;
   content: string;
-  slots?: ITaskSlot[];
+  slots?: ITaskItemSlot[];
   backgroundColor: string;
   feedbacks?: TFeedback[];
 }
@@ -47,7 +47,7 @@ export interface ITaskDetail extends IMetadata {
 export interface ITask extends IMetadata {
   title: string;
   imageUrl: string;
-  details?: ITaskDetail[];
+  items?: ITaskItem[];
   feedbacks?: TFeedback[];
 }
 

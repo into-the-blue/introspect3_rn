@@ -20,9 +20,12 @@ export class TaskService extends IService {
   static new(args: {store: TaskStore; navigation: NavigationProp<any>}) {
     return new this(args);
   }
+  initialSetup = () => {
+    this.on('TASK_INITIAL_DATA', this.setDerivedData);
+  };
 
-  increment = () => {
-    this.store.increment();
+  setDerivedData = ({task}: Pick<TaskStore, 'task'>) => {
+    this.store.setTask(task!);
   };
 
   resetStore = () => {

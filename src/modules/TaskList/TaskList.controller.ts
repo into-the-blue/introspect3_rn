@@ -23,7 +23,7 @@ export class TaskListController extends IController {
     this.service.queryTasks();
   };
 
-  onPressTaskCard = (_task: ITask) => {
-    this.service.goToTaskDetailPage();
+  onPressTaskCard = (task: ITask) => {
+    this.service.goToTaskDetailPage(task);
   };
 }

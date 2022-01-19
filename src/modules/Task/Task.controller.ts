@@ -10,10 +10,9 @@ export class TaskController extends IController {
     return new this(params);
   }
 
-  onPressButton = () => {
-    this.service.increment();
+  viewDidMount = () => {
+    this.service.initialSetup();
   };
-  viewDidMount = () => {};
   viewWillUnmount = () => {
     this.service.cleanListeners();
     this.service.resetStore();

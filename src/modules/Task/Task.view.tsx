@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Button, Text, StyleSheet} from 'react-native';
+import {View, Button, Text, StyleSheet, Image, FlatList} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {TaskStore} from './store/Task.store';
 import {TaskController} from './Task.controller';
@@ -11,7 +11,7 @@ interface ITaskProps {
 
 export const Task = (props: ITaskProps) => {
   const {controller} = props;
-  const {count} = props.store;
+  const {task, isLoading} = props.store;
   useEffect(() => {
     controller.viewDidMount();
 
@@ -21,8 +21,11 @@ export const Task = (props: ITaskProps) => {
   }, [controller]);
   return (
     <View style={styles.container}>
-      <Text>{`${count}`}</Text>
-      <Button title="increase" onPress={props.controller.onPressButton} />
+      <Text>{task?.title}</Text>
+      {/* <FlatList
+      data={task?.items}
+
+      /> */}
     </View>
   );
 };
