@@ -1,7 +1,7 @@
 import {xeno} from './globalXeno';
 import {Xeno} from './xeno';
 import {IEvents} from '../types';
-import {Observable, Observer, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 export class IService {
   xeno: Xeno<IEvents>;
   _unlistens: Function[] = [];
