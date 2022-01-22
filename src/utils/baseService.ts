@@ -1,7 +1,7 @@
 import {xeno} from './globalXeno';
 import {Xeno} from './xeno';
 import {IEvents} from '../types';
-import {Observer, Subscription} from 'rxjs';
+import {Observable, Observer, Subscription} from 'rxjs';
 export class IService {
   xeno: Xeno<IEvents>;
   _unlistens: Function[] = [];
@@ -16,14 +16,15 @@ export class IService {
   };
   trigger = <K extends keyof IEvents>(eventName: K, params?: IEvents[K]) => {
     const obs = this.xeno.trigger(eventName, params);
-    return {
-      subscribe: (observer?: Partial<Observer<any>>) => {
-        const subscription = obs.subscribe(observer);
+    const res: {subscribe: typeof obs.subscribe; pipe: typeof obs.pipe} = {
+      subscribe: observer => {
+        const subscription = obs.subscribe(observer as any);
         this._subscriptions.push(subscription);
         return subscription;
       },
       pipe: obs.pipe,
     };
+    return res;
   };
   cleanListeners = () => {
     this._unlistens.forEach(unlisten => unlisten());
