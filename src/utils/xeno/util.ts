@@ -1,9 +1,10 @@
-import {from, of} from 'rxjs';
+import {from, of, isObservable} from 'rxjs';
 export const isPromise = (obj: any) => {
   return String(obj) === '[object Promise]';
 };
 
 export const toObservable = (res: any) => {
+  if (isObservable(res)) return res;
   return isPromise(res) ? from(res) : of(res);
 };
 export const zip = (arr1: any[], arr2: any[]) => {
