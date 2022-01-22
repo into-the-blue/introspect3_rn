@@ -11,6 +11,7 @@ import React from 'react';
 import {
   TaskListPage,
   TaskPage,
+  NewTaskPage,
   // <HOOK> import new Page here </HOOK>
 } from './src/modules';
 import {NavigationContainer} from '@react-navigation/native';
@@ -24,6 +25,7 @@ export default function App() {
       <Stack.Navigator initialRouteName={'TaskList'}>
         <Stack.Screen name={'TaskList'} component={TaskListPage} />
         <Stack.Screen name={'Task'} component={TaskPage} />
+        <Stack.Screen name={'NewTask'} component={NewTaskPage} />
         {/* <HOOK> register new page here </HOOK> */}
       </Stack.Navigator>
     </NavigationContainer>
