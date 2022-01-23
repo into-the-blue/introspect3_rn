@@ -12,10 +12,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-//watermelondb JSI
-// import com.nozbe.watermelondb.jsi.WatermelonDBJSIPackage; // ⬅️ This!
-// import com.facebook.react.bridge.JSIModulePackage; // ⬅️ This!
-//watermelondb JSI
+
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -39,12 +36,6 @@ public class MainApplication extends Application implements ReactApplication {
         protected String getJSMainModuleName() {
           return "index";
         }
-        //watermelondb JSI
-        // @Override
-        // protected JSIModulePackage getJSIModulePackage() {
-        //   return new WatermelonDBJSIPackage(); // ⬅️ This!
-        // }
-        //watermelondb JSI
       };
 
   @Override
