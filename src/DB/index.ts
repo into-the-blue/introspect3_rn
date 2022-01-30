@@ -44,15 +44,25 @@ export const retriveDoc = <T>(name: string, query?: string): Promise<T[]> =>
 export const createDoc = <K extends keyof TCOLL, T>(
   name: TCOLL[K],
   properties: T,
-): Promise<T> =>
+): Promise<any> =>
   new Promise((resolve, reject) => {
     try {
       DB.write(() => {
         const res = DB.create(name, toSnakeCase(properties));
-        resolve({
-          ...properties,
-          id: res._objectId,
-        });
+        resolve(toCamelCase(res.toJSON()));
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+
+export const deleteDocFromObjectId = (name: string, objectId: string) =>
+  new Promise((resolve, reject) => {
+    try {
+      DB.write(() => {
+        const obj = DB.objectForPrimaryKey(name, objectId);
+        DB.delete(obj);
+        resolve(undefined);
       });
     } catch (err) {
       reject(err);

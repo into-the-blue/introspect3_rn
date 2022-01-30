@@ -3,9 +3,13 @@ export type {IXenoInjectedProps} from '../utils/xeno';
 import {TaskListEvents} from '../modules/TaskList/events';
 import {TaskEvents} from '../modules/Task';
 import {NewTaskEvents} from '../modules/NewTask';
+import {CreateTaskEvents} from '../modules/CreateTask';
 // <hook> import module events here </hook>
 
-export type IEvents = TaskListEvents & TaskEvents & NewTaskEvents;
+export type IEvents = TaskListEvents &
+  TaskEvents &
+  NewTaskEvents &
+  CreateTaskEvents;
 // <hook> add event type to end </hook>
 export type IReactComponent<P = any> =
   | React.ClassicComponentClass<P>
@@ -30,11 +34,15 @@ export interface TFeedback extends IMetadata {
   content: string;
   locked: boolean;
   targetId: string;
+  tagId: string;
   tag: ITag;
 }
 export interface ITaskItemSlot extends IMetadata {
   taskItemId: string;
   feedbacks?: TFeedback[];
+  content: string;
+  delayedTimes: number;
+  delayedOn: string[];
 }
 export interface ITaskItem extends IMetadata {
   taskId: string;
@@ -43,8 +51,6 @@ export interface ITaskItem extends IMetadata {
   slots?: ITaskItemSlot[];
   backgroundColor: string;
   feedbacks?: TFeedback[];
-  delayedTimes: number;
-  delayedOn: string[];
 }
 
 export interface ITask extends IMetadata {

@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
 import {View, Button, Text, StyleSheet} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
-import {NewTaskStore} from './store/NewTask.store';
-import {NewTaskController} from './NewTask.controller';
-interface INewTaskProps {
+import {CreateTaskStore} from './store/CreateTask.store';
+import {CreateTaskController} from './CreateTask.controller';
+interface ICreateTaskProps {
   navigation: NavigationProp<any>;
-  store: NewTaskStore;
-  controller: NewTaskController;
+  store: CreateTaskStore;
+  controller: CreateTaskController;
 }
 
-export const NewTask = (props: INewTaskProps) => {
+export const CreateTask = (props: ICreateTaskProps) => {
   const {controller} = props;
   const {count} = props.store;
   useEffect(() => {
@@ -26,7 +26,7 @@ export const NewTask = (props: INewTaskProps) => {
     </View>
   );
 };
-NewTask.displayName = 'NewTask';
+CreateTask.displayName = 'CreateTask';
 const styles = StyleSheet.create({
   container: {flex: 1, alignItems: 'center'},
 });

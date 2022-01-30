@@ -1,23 +1,23 @@
 import {IService} from '@/utils';
-import {NewTaskStore} from '@/stores';
+import {CreateTaskStore} from '@/stores';
 import {NavigationProp} from '@react-navigation/native';
 
-export class NewTaskService extends IService {
-  store: NewTaskStore;
+export class CreateTaskService extends IService {
+  store: CreateTaskStore;
   navigation: NavigationProp<any>;
 
   constructor({
     store,
     navigation,
   }: {
-    store: NewTaskStore;
+    store: CreateTaskStore;
     navigation: NavigationProp<any>;
   }) {
     super();
     this.store = store;
     this.navigation = navigation!;
   }
-  static new(args: {store: NewTaskStore; navigation: NavigationProp<any>}) {
+  static new(args: {store: CreateTaskStore; navigation: NavigationProp<any>}) {
     return new this(args);
   }
 

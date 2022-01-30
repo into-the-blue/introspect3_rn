@@ -1,12 +1,12 @@
 import {IController} from '@/utils';
-import {NewTaskService} from '@/services';
-export class NewTaskController extends IController {
-  service: NewTaskService;
-  constructor({service}: {service: NewTaskService}) {
+import {CreateTaskService} from '@/services';
+export class CreateTaskController extends IController {
+  service: CreateTaskService;
+  constructor({service}: {service: CreateTaskService}) {
     super();
     this.service = service;
   }
-  static new(params: {service: NewTaskService}) {
+  static new(params: {service: CreateTaskService}) {
     return new this(params);
   }
 

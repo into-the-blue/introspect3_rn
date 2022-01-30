@@ -7,11 +7,11 @@ import {
 } from './TaskList';
 import {Task, TaskController, TaskStore, TaskService} from './Task';
 import {
-  NewTask,
-  NewTaskController,
-  NewTaskStore,
-  NewTaskService,
-} from './NewTask';
+  CreateTask,
+  CreateTaskController,
+  CreateTaskStore,
+  CreateTaskService,
+} from './CreateTask';
 // <HOOK> import module properties here </HOOK>
 
 export const TaskListPage = (() => {
@@ -35,13 +35,13 @@ export const TaskPage = (() => {
   };
   return connect(generateStoreController)(Task);
 })();
-export const NewTaskPage = (() => {
+export const CreateTaskPage = (() => {
   const generateStoreController = ({navigation}: any) => {
-    const store = NewTaskStore.getNamedStore('NewTask');
-    const service = NewTaskService.new({store, navigation});
-    const controller = NewTaskController.new({service});
+    const store = CreateTaskStore.getNamedStore('CreateTask');
+    const service = CreateTaskService.new({store, navigation});
+    const controller = CreateTaskController.new({service});
     return {controller, store};
   };
-  return connect(generateStoreController)(NewTask);
+  return connect(generateStoreController)(CreateTask);
 })();
 // <HOOK> connect module here </HOOK>
