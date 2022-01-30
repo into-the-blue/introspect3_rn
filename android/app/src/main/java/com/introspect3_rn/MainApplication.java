@@ -13,6 +13,8 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import com.tencent.bugly.crashreport.CrashReport;
+
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -46,6 +48,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    CrashReport.initCrashReport(getApplicationContext(), "649fe0e40f", false); 
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
