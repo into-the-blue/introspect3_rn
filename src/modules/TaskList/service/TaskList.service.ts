@@ -47,4 +47,8 @@ export class TaskListService extends IService {
   resetStore = () => {
     this.store.reset();
   };
+
+  goToCreateTaskPage = () => {
+    this.navigation.navigate('CreateTask');
+  };
 }

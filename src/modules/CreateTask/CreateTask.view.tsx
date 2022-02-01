@@ -3,6 +3,7 @@ import {View, Button, Text, StyleSheet} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {CreateTaskStore} from './store/CreateTask.store';
 import {CreateTaskController} from './CreateTask.controller';
+import {TextInput} from '@/components';
 interface ICreateTaskProps {
   navigation: NavigationProp<any>;
   store: CreateTaskStore;

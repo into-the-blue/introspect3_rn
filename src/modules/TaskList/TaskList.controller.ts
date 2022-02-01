@@ -26,4 +26,8 @@ export class TaskListController extends IController {
   onPressTaskCard = (task: ITask) => {
     this.service.goToTaskDetailPage(task);
   };
+
+  onPressCreateNewTask = () => {
+    this.service.goToCreateTaskPage();
+  };
 }

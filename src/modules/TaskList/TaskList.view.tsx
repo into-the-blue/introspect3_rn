@@ -4,7 +4,7 @@ import {NavigationProp} from '@react-navigation/native';
 import {TaskListStore} from './store/TaskList.store';
 import {TaskListController} from './TaskList.controller';
 import {ITask} from '@/types';
-import {TaskListCard} from './components/TaskListCard';
+import {TaskListCard, CreateNewTask} from './components';
 interface ITaskListProps {
   navigation: NavigationProp<any>;
   store: TaskListStore;
@@ -27,8 +27,12 @@ export const TaskList = (props: ITaskListProps) => {
     <View style={styles.container}>
       <FlatList
         style={styles.flatList}
+        contentContainerStyle={styles.listContainer}
         data={tasks}
         renderItem={renderTaskCard}
+        ListFooterComponent={
+          <CreateNewTask onPress={controller.onPressCreateNewTask} />
+        }
         keyExtractor={(_, idx) => `task_card_${idx}`}
         showsVerticalScrollIndicator={false}
       />
@@ -39,4 +43,7 @@ TaskList.displayName = 'TaskList';
 const styles = StyleSheet.create({
   container: {flex: 1},
   flatList: {flex: 1},
+  listContainer: {
+    paddingBottom: 50,
+  },
 });

@@ -1,11 +1,14 @@
 import React from 'react';
-import {Image as RNImage, ImageProps, ImageSourcePropType} from 'react-native';
+import FastImage, {FastImageProps, Source} from 'react-native-fast-image';
 
-interface IProps extends Omit<ImageProps, 'source'> {
+interface IProps extends Omit<FastImageProps, 'source'> {
   url?: string;
-  source?: ImageSourcePropType;
+  source?: Source;
+  cachePriority?: 'low' | 'normal' | 'high';
 }
 
-export const Image = ({source, url}: IProps) => {
-  return <RNImage source={url ? {uri: url} : source!} />;
+export const Image = ({source, url, cachePriority}: IProps) => {
+  return (
+    <FastImage source={url ? {uri: url, priority: cachePriority} : source!} />
+  );
 };

@@ -17,9 +17,9 @@ type TButtonColor = 'primary' | 'secondary' | 'danger' | 'dangerSecondary';
 interface IProps {
   onPress: (event: GestureResponderEvent) => void;
   title: string;
-  size: TButtonSize;
-  color: TButtonColor;
-  disabled: boolean;
+  size?: TButtonSize;
+  color?: TButtonColor;
+  disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
   loading?: boolean;
@@ -63,7 +63,7 @@ const getColorConfigs = (color: TButtonColor) => {
 export const Button = ({
   title,
   onPress,
-  color,
+  color = 'secondary',
   size = 'middle',
   style,
   textStyle,
@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: ALIGNMENT.gap,
   },
   text: {
     textAlign: 'center',

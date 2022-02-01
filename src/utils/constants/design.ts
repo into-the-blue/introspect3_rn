@@ -11,19 +11,19 @@ export const COLORS = {
 };
 
 export const ALIGNMENT = {
-  gap: 18,
+  gap: 15,
   BUTTON: {
     small: {
       height: 24,
-      width: 488,
+      // width: 48,
     },
     middle: {
       height: 30,
-      width: 60,
+      // width: 60,
     },
     large: {
       height: 32,
-      width: 80,
+      // width: 80,
     },
   },
 };
@@ -31,5 +31,5 @@ export const ALIGNMENT = {
 export const FONT_SIZE = {
   h2: 28,
   h3: 22,
-  h5: 18,
+  h5: 15,
 };
