@@ -9,13 +9,11 @@ export class CreateTaskController extends IController {
   static new(params: {service: CreateTaskService}) {
     return new this(params);
   }
-
-  onPressButton = () => {
-    this.service.increment();
-  };
   viewDidMount = () => {};
   viewWillUnmount = () => {
     this.service.cleanListeners();
     this.service.resetStore();
   };
+
+  onPressPickImage = () => {};
 }

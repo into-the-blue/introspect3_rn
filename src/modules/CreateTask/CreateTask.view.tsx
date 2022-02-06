@@ -3,7 +3,7 @@ import {View, Button, Text, StyleSheet} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {CreateTaskStore} from './store/CreateTask.store';
 import {CreateTaskController} from './CreateTask.controller';
-import {TextInput} from '@/components';
+import {TextInputWithTitle, PickImage} from './components';
 interface ICreateTaskProps {
   navigation: NavigationProp<any>;
   store: CreateTaskStore;
@@ -12,7 +12,7 @@ interface ICreateTaskProps {
 
 export const CreateTask = (props: ICreateTaskProps) => {
   const {controller} = props;
-  const {count} = props.store;
+  const {title, setTitle, image} = props.store;
   useEffect(() => {
     controller.viewDidMount();
 
@@ -22,8 +22,15 @@ export const CreateTask = (props: ICreateTaskProps) => {
   }, [controller]);
   return (
     <View style={styles.container}>
-      <Text>{`${count}`}</Text>
-      <Button title="increase" onPress={props.controller.onPressButton} />
+      <TextInputWithTitle
+        title={'input task name'}
+        inputValue={title}
+        onChangeText={setTitle}
+      />
+      <PickImage
+        imageSource={undefined}
+        onPressPickImage={controller.onPressPickImage}
+      />
     </View>
   );
 };

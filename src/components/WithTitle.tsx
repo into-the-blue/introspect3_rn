@@ -1,11 +1,11 @@
 import {ALIGNMENT} from '@/utils';
-import React, {ReactChildren} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text} from './Text';
 
 interface IProps {
   title: string;
-  children: ReactChildren;
+  children?: React.ReactNode;
 }
 export const WithTitle = ({title, children}: IProps) => {
   return (

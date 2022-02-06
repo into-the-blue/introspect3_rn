@@ -1,20 +1,28 @@
 import {observable, action, makeObservable} from 'mobx';
 import {IStore} from '@/utils';
+import {ITaskImage} from '@/types';
 export class CreateTaskStore extends IStore {
   name?: string = undefined;
   constructor() {
     super();
     makeObservable(this, {
-      count: observable,
-      increment: action.bound,
+      title: observable,
+      setTitle: action.bound,
+      setLocalImage: action.bound,
+      setUnsplashImage: action.bound,
     });
   }
 
-  count: number = 0;
+  title: string = '';
+  image?: ITaskImage;
 
-  increment = () => {
-    this.count += 1;
+  setTitle = (text: string) => {
+    this.title = text;
   };
+
+  setLocalImage = () => {};
+
+  setUnsplashImage = () => {};
 
   reset = () => {
     CreateTaskStore.removeNamedStore(this.name!);

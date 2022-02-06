@@ -2,14 +2,10 @@ import React from 'react';
 export type {IXenoInjectedProps} from '../utils/xeno';
 import {TaskListEvents} from '../modules/TaskList/events';
 import {TaskEvents} from '../modules/Task';
-import {NewTaskEvents} from '../modules/NewTask';
 import {CreateTaskEvents} from '../modules/CreateTask';
 // <hook> import module events here </hook>
 
-export type IEvents = TaskListEvents &
-  TaskEvents &
-  NewTaskEvents &
-  CreateTaskEvents;
+export type IEvents = TaskListEvents & TaskEvents & CreateTaskEvents;
 // <hook> add event type to end </hook>
 export type IReactComponent<P = any> =
   | React.ClassicComponentClass<P>
@@ -53,9 +49,20 @@ export interface ITaskItem extends IMetadata {
   feedbacks?: TFeedback[];
 }
 
+export interface ITaskImage {
+  id: string;
+  source: 'unsplash' | 'local' | 'camera';
+  imageUrl: string;
+  unsplashInfo: {
+    color: string;
+    rawUrl: string;
+    authorName: string;
+    portfolioUrl: string;
+  };
+}
 export interface ITask extends IMetadata {
   title: string;
-  imageUrl: string;
+  image: ITaskImage;
   items?: ITaskItem[];
   feedbacks?: TFeedback[];
 }
