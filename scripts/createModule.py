@@ -112,6 +112,7 @@ def _createDirs(module_name):
     (module_path/module_name).mkdir()
     (module_path/module_name/'service').mkdir()
     (module_path/module_name/'store').mkdir()
+    (module_path/module_name/'event').mkdir()
 
 
 def writeToTargetDir(templates, module_name):
