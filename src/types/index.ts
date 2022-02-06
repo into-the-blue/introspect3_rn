@@ -1,6 +1,6 @@
 import React from 'react';
 export type {IXenoInjectedProps} from '../utils/xeno';
-import {TaskListEvents} from '../modules/TaskList/events';
+import {TaskListEvents} from '../modules/TaskList';
 import {TaskEvents} from '../modules/Task';
 import {CreateTaskEvents} from '../modules/CreateTask';
 // <hook> import module events here </hook>
