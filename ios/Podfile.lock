@@ -361,6 +361,8 @@ PODS:
     - React-Core
     - SDWebImage (~> 5.11.1)
     - SDWebImageWebPCoder (~> 0.8.4)
+  - RNFS (2.18.0):
+    - React
   - RNLocalize (2.1.9):
     - React-Core
   - RNScreens (3.10.1):
@@ -435,6 +437,7 @@ DEPENDENCIES:
   - RealmJS (from `../node_modules/realm`)
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
+  - RNFS (from `../node_modules/react-native-fs`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -528,6 +531,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-device-info"
   RNFastImage:
     :path: "../node_modules/react-native-fast-image"
+  RNFS:
+    :path: "../node_modules/react-native-fs"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
   RNScreens:
@@ -585,6 +590,7 @@ SPEC CHECKSUMS:
   RealmJS: de65cc7c3ea041750d66beaa28b30585222c3d94
   RNDeviceInfo: 0400a6d0c94186d1120c3cbd97b23abc022187a9
   RNFastImage: 1f2cab428712a4baaf78d6169eaec7f622556dd7
+  RNFS: 3ab21fa6c56d65566d1fb26c2228e2b6132e5e32
   RNLocalize: 291e5e21b53cd30b5205c10ed95d31b0dc9b8d63
   RNScreens: 522705f2e5c9d27efb17f24aceb2bf8335bc7b8e
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
