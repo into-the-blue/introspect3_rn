@@ -1,15 +1,16 @@
-import {ALIGNMENT} from '@/utils';
+import {ALIGNMENT, flattenStyles} from '@/utils';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, StyleProp, ViewStyle} from 'react-native';
 import {Text} from './Text';
 
 interface IProps {
   title: string;
   children?: React.ReactNode;
+  containerStyle?: StyleProp<ViewStyle>;
 }
-export const WithTitle = ({title, children}: IProps) => {
+export const WithTitle = ({title, children, containerStyle}: IProps) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, flattenStyles(containerStyle)]}>
       <Text color={'secondary'}>{title}</Text>
       {children}
     </View>
@@ -19,5 +20,6 @@ export const WithTitle = ({title, children}: IProps) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: ALIGNMENT.gap,
+    marginTop: ALIGNMENT.gap,
   },
 });

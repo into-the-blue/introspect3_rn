@@ -6,9 +6,11 @@ interface IProps extends Omit<FastImageProps, 'source'> {
   source?: Source;
   cachePriority?: 'low' | 'normal' | 'high';
 }
-
-export const Image = ({source, url, cachePriority}: IProps) => {
+export const Image = ({source, url, cachePriority, ...restProps}: IProps) => {
   return (
-    <FastImage source={url ? {uri: url, priority: cachePriority} : source!} />
+    <FastImage
+      source={url ? {uri: url, priority: cachePriority} : source!}
+      {...restProps}
+    />
   );
 };

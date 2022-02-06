@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
-import {View, Button, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {CreateTaskStore} from './store/CreateTask.store';
 import {CreateTaskController} from './CreateTask.controller';
 import {TextInputWithTitle, PickImage} from './components';
+import {COLORS} from '@/utils';
+import {Button} from '@/components';
 interface ICreateTaskProps {
   navigation: NavigationProp<any>;
   store: CreateTaskStore;
@@ -12,7 +14,7 @@ interface ICreateTaskProps {
 
 export const CreateTask = (props: ICreateTaskProps) => {
   const {controller} = props;
-  const {title, setTitle, image} = props.store;
+  const {title, setTitle, image, imageUrl} = props.store;
   useEffect(() => {
     controller.viewDidMount();
 
@@ -28,13 +30,19 @@ export const CreateTask = (props: ICreateTaskProps) => {
         onChangeText={setTitle}
       />
       <PickImage
-        imageSource={undefined}
+        imageSource={imageUrl}
         onPressPickImage={controller.onPressPickImage}
+        onPressRandomImage={controller.onPressRandomImage}
+      />
+      <Button
+        disabled={!title.length || !imageUrl}
+        title={'Save'}
+        onPress={controller.onPressSave}
       />
     </View>
   );
 };
 CreateTask.displayName = 'CreateTask';
 const styles = StyleSheet.create({
-  container: {flex: 1, alignItems: 'center'},
+  container: {flex: 1, backgroundColor: COLORS.viewBackground},
 });

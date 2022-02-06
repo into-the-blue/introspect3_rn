@@ -8,6 +8,7 @@ export const COLORS = {
   dividerColor: '#BDBDBD',
   danger: '#ef5350',
   white: '#FFFFFF',
+  viewBackground: '#FCFCFC',
 };
 
 export const ALIGNMENT = {

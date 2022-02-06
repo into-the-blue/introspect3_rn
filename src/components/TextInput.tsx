@@ -1,10 +1,12 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {
+  NativeSyntheticEvent,
   StyleSheet,
   TextInput as RNTextInput,
+  TextInputFocusEventData,
   TextInputProps,
 } from 'react-native';
-import {flattenStyles} from '@/utils';
+import {COLORS, flattenStyles} from '@/utils';
 
 const DEFAULT_PROPS: TextInputProps = {
   autoCorrect: false,
@@ -13,14 +15,25 @@ const DEFAULT_PROPS: TextInputProps = {
 
 interface IProps extends TextInputProps {}
 
-export const TextInput = ({style, ...restProps}: IProps) => {
+export const TextInput = ({style, onFocus, onBlur, ...restProps}: IProps) => {
   const _textInputRef = useRef<RNTextInput>(null);
+  const [focused, setFocus] = useState<Boolean>(false);
   const clearInput = () => {
     _textInputRef.current?.clear();
+  };
+  const _onFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    setFocus(true);
+    onFocus && onFocus(e);
+  };
+  const _onBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    setFocus(false);
+    onBlur && onBlur(e);
   };
   return (
     <RNTextInput
       style={[styles.textInput, flattenStyles(style)]}
+      onFocus={_onFocus}
+      onBlur={_onBlur}
       ref={_textInputRef}
       {...DEFAULT_PROPS}
       {...restProps}
@@ -30,8 +43,8 @@ export const TextInput = ({style, ...restProps}: IProps) => {
 
 const styles = StyleSheet.create({
   textInput: {
-    backgroundColor: 'transparent',
-    borderBottomWidth: 1,
+    backgroundColor: COLORS.white,
+    // borderBottomWidth: 1,
     height: 30,
     padding: 0,
     margin: 0,

@@ -7,6 +7,9 @@ export class CreateTaskStore extends IStore {
     super();
     makeObservable(this, {
       title: observable,
+      imageUrl: observable,
+      image: observable,
+      // actions
       setTitle: action.bound,
       setLocalImage: action.bound,
       setUnsplashImage: action.bound,
@@ -14,13 +17,33 @@ export class CreateTaskStore extends IStore {
   }
 
   title: string = '';
-  image?: ITaskImage;
+  image?: ITaskImage = undefined;
+  imageUrl?: string = undefined;
 
   setTitle = (text: string) => {
     this.title = text;
   };
 
-  setLocalImage = () => {};
+  setLocalImage = ({
+    uri,
+    width,
+    height,
+    fileSize,
+  }: {
+    uri: string;
+    width: number;
+    height: number;
+    fileSize: number;
+  }) => {
+    this.imageUrl = uri;
+    this.image = {
+      source: 'local',
+      width,
+      height,
+      size: fileSize,
+      imageUrl: uri,
+    };
+  };
 
   setUnsplashImage = () => {};
 

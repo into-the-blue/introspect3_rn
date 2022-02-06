@@ -15,5 +15,15 @@ export class CreateTaskController extends IController {
     this.service.resetStore();
   };
 
-  onPressPickImage = () => {};
+  onPressPickImage = () => {
+    this.service.pickLocalImage();
+  };
+
+  onPressRandomImage = () => {
+    this.service.getRandomImage();
+  };
+
+  onPressSave = () => {
+    this.service.createTask();
+  };
 }

@@ -50,10 +50,13 @@ export interface ITaskItem extends IMetadata {
 }
 
 export interface ITaskImage {
-  id: string;
+  id?: string;
   source: 'unsplash' | 'local' | 'camera';
   imageUrl: string;
-  unsplashInfo: {
+  width: number;
+  height: number;
+  size?: number;
+  unsplashInfo?: {
     color: string;
     rawUrl: string;
     authorName: string;
