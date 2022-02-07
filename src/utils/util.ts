@@ -18,7 +18,7 @@ export const flattenStyles = (...styles: AllStyle[] | AllStyle[][]) => {
 };
 
 export const isObject = (thing: any) => {
-  return String(thing) === '[object Object]';
+  return Object.prototype.toString.call(thing) === '[object Object]';
 };
 
 const toCase =
@@ -39,12 +39,15 @@ const toCase =
       Object.keys(_obj).forEach(key => {
         const item = _obj[key];
         let processedKey = processor(key);
+        // take key name from key handler
         if (_keyHandler[key]) processedKey = _keyHandler[key](key);
-
+        // if item is type of array, process item
         if (Array.isArray(item)) {
           tmp[processedKey] = item.map(recursively);
+          // if item is type of object
         } else if (isObject(item)) {
           tmp[processedKey] = recursively(item);
+          // do nothing to other types
         } else {
           tmp[processedKey] = item;
         }

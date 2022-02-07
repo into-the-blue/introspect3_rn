@@ -1,7 +1,7 @@
 import {toArray} from 'rxjs';
 import {Xeno} from '../xeno';
 
-let xeno = new Xeno();
+let xeno = new Xeno<any>();
 const listener1 = (data: number) => {
   return 'listener1 ' + data;
 };

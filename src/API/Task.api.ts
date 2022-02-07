@@ -2,7 +2,7 @@ import {COLLECTIONS, createDoc, retriveDoc, deleteDocFromObjectId} from '@/DB';
 import {ITask} from '@/types';
 export class TaskAPI {
   static createTask = async (
-    task: Pick<ITask, 'imageUrl' | 'title'>,
+    task: Pick<ITask, 'title' | 'image'>,
   ): Promise<ITask> => {
     return await createDoc(COLLECTIONS.Task, task);
   };

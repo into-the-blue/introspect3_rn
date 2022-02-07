@@ -9,6 +9,7 @@ import {
   exists,
   getFSInfo,
 } from 'react-native-fs';
+import {TaskAPI} from '@/API';
 export class CreateTaskService extends IService {
   store: CreateTaskStore;
   navigation: NavigationProp<any>;
@@ -68,13 +69,19 @@ export class CreateTaskService extends IService {
       const {fileSize, uri, height, width} = assets[0];
       const imageUrl = await this.copyImageToAppDoc(uri!, fileSize!);
       this.store.setLocalImage({
-        uri: imageUrl!,
+        imageUrl: imageUrl!,
         height: height!,
         width: width!,
-        fileSize: fileSize!,
+        size: fileSize!,
       });
-      console.log(assets[0], imageUrl);
     } catch (err) {}
+  };
+
+  saveImage = () => {
+    return TaskAPI.createTask({
+      title: this.store.title,
+      image: this.store.image!,
+    });
   };
 
   copyImageToAppDoc = async (pth: string, fileSize: number) => {
@@ -96,5 +103,15 @@ export class CreateTaskService extends IService {
 
   getRandomImage = async () => {};
 
-  createTask = async () => {};
+  createTask = async () => {
+    if (!this.store.image || !this.store.title.length) {
+      return Alert.alert('Require image and title');
+    }
+    try {
+      const taskObj = await this.saveImage();
+      console.log(taskObj);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 }

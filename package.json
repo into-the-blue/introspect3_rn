@@ -13,6 +13,7 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
+    "bson": "^4.6.1",
     "dayjs": "^1.10.7",
     "lodash": "^4.17.21",
     "mobx": "^6.3.12",
@@ -22,6 +23,7 @@
     "react-native-device-info": "^8.4.8",
     "react-native-fast-image": "^8.5.11",
     "react-native-fs": "^2.18.0",
+    "react-native-get-random-values": "^1.7.2",
     "react-native-image-picker": "^4.7.3",
     "react-native-image-resizer": "^1.4.5",
     "react-native-localize": "^2.1.9",

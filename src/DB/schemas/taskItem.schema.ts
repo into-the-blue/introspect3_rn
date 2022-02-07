@@ -7,7 +7,7 @@ export const TaskItemSchema: ObjectSchema = {
     created_at: 'date',
     updated_at: 'date',
     //
-    task_id: 'ObjectId',
+    task_id: 'objectId',
     title: 'string',
     content: 'string',
     background_color: 'string',

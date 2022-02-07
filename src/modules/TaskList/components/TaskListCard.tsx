@@ -1,7 +1,8 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import {StyleSheet, View, Text, Image, TouchableHighlight} from 'react-native';
+import {StyleSheet, View, Pressable} from 'react-native';
 import {ITask} from '@/types';
+import {Text, Image} from '@/components';
 interface IProps {
   task: ITask;
   onPress: (task: ITask) => void;
@@ -9,12 +10,12 @@ interface IProps {
 
 export const TaskListCard = observer(({task, onPress}: IProps) => {
   return (
-    <TouchableHighlight onPress={() => onPress(task)}>
+    <Pressable onPress={() => onPress(task)}>
       <View style={styles.cardContainer}>
-        <Image style={styles.image} source={{uri: task.imageUrl}} />
+        <Image style={styles.image} source={{uri: task.image.imageUrl}} />
         <Text>{task.title}</Text>
       </View>
-    </TouchableHighlight>
+    </Pressable>
   );
 });
 

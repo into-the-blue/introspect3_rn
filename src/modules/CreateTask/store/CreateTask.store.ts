@@ -25,23 +25,23 @@ export class CreateTaskStore extends IStore {
   };
 
   setLocalImage = ({
-    uri,
+    imageUrl,
     width,
     height,
-    fileSize,
+    size,
   }: {
-    uri: string;
+    imageUrl: string;
     width: number;
     height: number;
-    fileSize: number;
+    size: number;
   }) => {
-    this.imageUrl = uri;
+    this.imageUrl = imageUrl;
     this.image = {
       source: 'local',
       width,
       height,
-      size: fileSize,
-      imageUrl: uri,
+      size,
+      imageUrl,
     };
   };
 

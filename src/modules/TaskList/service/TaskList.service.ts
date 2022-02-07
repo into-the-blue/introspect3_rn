@@ -2,17 +2,8 @@ import {IService} from '@/utils';
 import {TaskListStore} from '@/stores';
 import {ITask} from '@/types';
 import {NavigationProp} from '@react-navigation/native';
+import {TaskAPI} from '@/API';
 
-const TEST_TASKS: ITask[] = [
-  {
-    id: '1123123',
-    title: 'this is a fake title',
-    imageUrl:
-      'https://images.unsplash.com/photo-1638401985728-4570ea56992b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0NTI1NXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MTA5MjQ5NA&ixlib=rb-1.2.1&q=80&w=1080',
-    createdAt: '2022-01-11',
-    updatedAt: '2022-01-11',
-  },
-];
 export class TaskListService extends IService {
   store: TaskListStore;
   navigation: NavigationProp<any>;
@@ -33,7 +24,13 @@ export class TaskListService extends IService {
   }
 
   queryTasks = async () => {
-    this.store.setTasks(new Array(10).fill(TEST_TASKS[0]));
+    try {
+      const tasks = await TaskAPI.getAllTasks();
+      console.log(tasks, tasks[0].image);
+      this.store.setTasks(tasks);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   passTaskToDetailPage = (task: ITask) => {
