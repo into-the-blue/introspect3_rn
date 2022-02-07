@@ -7,11 +7,13 @@ interface IProps {
   imageSource: string | any | undefined;
   onPressPickImage: () => void;
   onPressRandomImage: () => void;
+  onPressDeleteImage: () => void;
 }
 export const PickImage = ({
   imageSource,
   onPressPickImage,
   onPressRandomImage,
+  onPressDeleteImage,
 }: IProps) => {
   return (
     <WithTitle title={'Pick an image'} containerStyle={styles.wrapper}>
@@ -26,11 +28,18 @@ export const PickImage = ({
           </View>
         )}
         {imageSource && (
-          <Image
-            style={styles.image}
-            // resizeMode={'cover'}
-            url={imageSource}
-          />
+          <>
+            <Image
+              style={styles.image}
+              // resizeMode={'cover'}
+              url={imageSource}
+            />
+            <Button
+              title={'delete image'}
+              style={styles.deleteImage}
+              onPress={onPressDeleteImage}
+            />
+          </>
         )}
       </View>
     </WithTitle>
@@ -49,4 +58,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   image: {flex: 1},
+  deleteImage: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+  },
 });

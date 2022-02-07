@@ -26,4 +26,8 @@ export class CreateTaskController extends IController {
   onPressSave = () => {
     this.service.createTask();
   };
+
+  onPressDeleteImage = () => {
+    this.service.deleteImage();
+  };
 }

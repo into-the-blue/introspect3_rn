@@ -1,5 +1,6 @@
 import {toCamelCase, toSnakeCase} from '@/utils';
 import {ObjectId} from 'bson';
+import {isObject} from '@/utils';
 
 import Realm from 'realm';
 import {
@@ -37,7 +38,6 @@ export const retriveDoc = <T>(name: string, query?: string): Promise<T[]> =>
       if (query) {
         docs = docs.filtered(query);
       }
-
       return resolve(docs.map(o => toCamelCase(o.toJSON())));
     } catch (err) {
       reject(err);

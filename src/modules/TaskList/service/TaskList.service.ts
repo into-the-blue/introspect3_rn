@@ -26,7 +26,6 @@ export class TaskListService extends IService {
   queryTasks = async () => {
     try {
       const tasks = await TaskAPI.getAllTasks();
-      console.log(tasks, tasks[0].image);
       this.store.setTasks(tasks);
     } catch (err) {
       console.error(err);
@@ -47,5 +46,20 @@ export class TaskListService extends IService {
 
   goToCreateTaskPage = () => {
     this.navigation.navigate('CreateTask');
+  };
+
+  initListeners = () => {
+    this.xeno.on('TASKLIST_NEW_TASK', (task: ITask) => {
+      this.store.addNewTask(task);
+    });
+  };
+
+  deleteTask = async (task: ITask) => {
+    try {
+      await TaskAPI.deleteTask(task.id);
+      this.store.deleteTask(task.id);
+    } catch (err) {
+      console.error(err);
+    }
   };
 }

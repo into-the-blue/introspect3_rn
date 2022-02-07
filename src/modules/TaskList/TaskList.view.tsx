@@ -12,8 +12,7 @@ interface ITaskListProps {
 }
 
 export const TaskList = (props: ITaskListProps) => {
-  const {controller} = props;
-  const {tasks} = props.store;
+  const {controller, store} = props;
   useEffect(() => {
     controller.viewDidMount();
     return () => {
@@ -21,19 +20,25 @@ export const TaskList = (props: ITaskListProps) => {
     };
   }, [controller]);
   const renderTaskCard = ({item}: {item: ITask; index: number}) => {
-    return <TaskListCard task={item} onPress={controller.onPressTaskCard} />;
+    return (
+      <TaskListCard
+        task={item}
+        onPress={controller.onPressTaskCard}
+        onPressDeleteTask={controller.onPressDeleteTask}
+      />
+    );
   };
   return (
     <View style={styles.container}>
       <FlatList
         style={styles.flatList}
         contentContainerStyle={styles.listContainer}
-        data={tasks}
+        data={store.tasks}
         renderItem={renderTaskCard}
         ListFooterComponent={
           <CreateNewTask onPress={controller.onPressCreateNewTask} />
         }
-        keyExtractor={(_, idx) => `task_card_${idx}`}
+        keyExtractor={_ => _.id}
         showsVerticalScrollIndicator={false}
       />
     </View>

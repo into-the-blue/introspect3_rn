@@ -13,6 +13,7 @@ export class CreateTaskStore extends IStore {
       setTitle: action.bound,
       setLocalImage: action.bound,
       setUnsplashImage: action.bound,
+      deleteImage: action.bound,
     });
   }
 
@@ -49,5 +50,10 @@ export class CreateTaskStore extends IStore {
 
   reset = () => {
     CreateTaskStore.removeNamedStore(this.name!);
+  };
+
+  deleteImage = () => {
+    this.imageUrl = undefined;
+    this.image = undefined;
   };
 }

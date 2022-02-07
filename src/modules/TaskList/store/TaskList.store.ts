@@ -7,6 +7,8 @@ export class TaskListStore extends IStore {
     makeObservable(this, {
       tasks: observable,
       setTasks: action.bound,
+      addNewTask: action.bound,
+      deleteTask: action.bound,
     });
   }
 
@@ -14,5 +16,13 @@ export class TaskListStore extends IStore {
 
   setTasks = (data: ITask[]) => {
     this.tasks = data;
+  };
+
+  addNewTask = (task: ITask) => {
+    this.tasks = this.tasks.concat([task]);
+  };
+
+  deleteTask = (taskId: string) => {
+    this.tasks = this.tasks.filter(o => o.id !== taskId);
   };
 }

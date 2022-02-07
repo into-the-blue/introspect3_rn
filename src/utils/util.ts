@@ -45,7 +45,7 @@ const toCase =
         if (Array.isArray(item)) {
           tmp[processedKey] = item.map(recursively);
           // if item is type of object
-        } else if (isObject(item)) {
+        } else if (isObject(item) && Object.keys(item).length) {
           tmp[processedKey] = recursively(item);
           // do nothing to other types
         } else {

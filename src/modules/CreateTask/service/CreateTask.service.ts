@@ -10,6 +10,7 @@ import {
   getFSInfo,
 } from 'react-native-fs';
 import {TaskAPI} from '@/API';
+import {ITask} from '@/types';
 export class CreateTaskService extends IService {
   store: CreateTaskStore;
   navigation: NavigationProp<any>;
@@ -103,15 +104,23 @@ export class CreateTaskService extends IService {
 
   getRandomImage = async () => {};
 
+  addNewTaskToList = (task: ITask) => {
+    this.xeno.trigger('TASKLIST_NEW_TASK', task);
+  };
   createTask = async () => {
     if (!this.store.image || !this.store.title.length) {
       return Alert.alert('Require image and title');
     }
     try {
       const taskObj = await this.saveImage();
-      console.log(taskObj);
+      this.addNewTaskToList(taskObj);
+      this.navigation.goBack();
     } catch (err) {
       console.error(err);
     }
+  };
+
+  deleteImage = () => {
+    this.store.deleteImage();
   };
 }

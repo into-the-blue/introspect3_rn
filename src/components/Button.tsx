@@ -89,12 +89,10 @@ export const Button = ({
       }}
       disabled={disabled || loading}
       onPress={onPress}
-      style={({pressed}) => [{opacity: pressed ? 0.7 : 1}]}>
-      <View style={containerStyles}>
-        <Text style={textStyles} {...textProps}>
-          {title}
-        </Text>
-      </View>
+      style={({pressed}) => [{opacity: pressed ? 0.7 : 1}, containerStyles]}>
+      <Text style={textStyles} {...textProps}>
+        {title}
+      </Text>
     </Pressable>
   );
 };
@@ -106,6 +104,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: ALIGNMENT.gap,
+    backgroundColor: COLORS.viewBackground,
   },
   text: {
     textAlign: 'center',

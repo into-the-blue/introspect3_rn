@@ -14,7 +14,7 @@ interface ICreateTaskProps {
 
 export const CreateTask = (props: ICreateTaskProps) => {
   const {controller} = props;
-  const {title, setTitle, image, imageUrl} = props.store;
+  const {title, setTitle, imageUrl} = props.store;
   useEffect(() => {
     controller.viewDidMount();
 
@@ -33,6 +33,7 @@ export const CreateTask = (props: ICreateTaskProps) => {
         imageSource={imageUrl}
         onPressPickImage={controller.onPressPickImage}
         onPressRandomImage={controller.onPressRandomImage}
+        onPressDeleteImage={controller.onPressDeleteImage}
       />
       <Button
         disabled={!title.length || !imageUrl}

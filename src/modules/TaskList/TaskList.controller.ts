@@ -13,6 +13,7 @@ export class TaskListController extends IController {
 
   viewDidMount = () => {
     this.queryTasks();
+    this.service.initListeners();
   };
   viewWillUnmount = () => {
     this.service.cleanListeners();
@@ -29,5 +30,9 @@ export class TaskListController extends IController {
 
   onPressCreateNewTask = () => {
     this.service.goToCreateTaskPage();
+  };
+
+  onPressDeleteTask = (task: ITask) => {
+    this.service.deleteTask(task);
   };
 }
