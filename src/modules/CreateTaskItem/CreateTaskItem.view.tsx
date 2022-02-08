@@ -3,6 +3,8 @@ import {View, Button, Text, StyleSheet} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {CreateTaskItemStore} from './store/CreateTaskItem.store';
 import {CreateTaskItemController} from './CreateTaskItem.controller';
+import {COLORS} from '@/utils';
+
 interface ICreateTaskItemProps {
   navigation: NavigationProp<any>;
   store: CreateTaskItemStore;

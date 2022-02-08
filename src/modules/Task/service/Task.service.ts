@@ -1,6 +1,7 @@
 import {IService} from '@/utils';
 import {TaskStore} from '@/stores';
 import {NavigationProp} from '@react-navigation/native';
+import {TaskItemAPI} from '@/API';
 
 export class TaskService extends IService {
   store: TaskStore;
@@ -20,12 +21,23 @@ export class TaskService extends IService {
   static new(args: {store: TaskStore; navigation: NavigationProp<any>}) {
     return new this(args);
   }
-  initialSetup = () => {
+  initListeners = () => {
     this.on('TASK_INITIAL_DATA', this.setDerivedData);
+  };
+
+  queryTaskItems = async () => {
+    if (!this.store.task) return;
+    try {
+      const items = await TaskItemAPI.getAllItems(this.store.task.id);
+      console.log(items);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   setDerivedData = ({task}: Pick<TaskStore, 'task'>) => {
     this.store.setTask(task!);
+    this.queryTaskItems();
   };
 
   resetStore = () => {

@@ -11,7 +11,8 @@ export class TaskController extends IController {
   }
 
   viewDidMount = () => {
-    this.service.initialSetup();
+    this.service.queryTaskItems();
+    this.service.initListeners();
   };
   viewWillUnmount = () => {
     this.service.cleanListeners();

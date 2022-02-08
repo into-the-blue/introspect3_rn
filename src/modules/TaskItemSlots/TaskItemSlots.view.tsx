@@ -3,6 +3,8 @@ import {View, Button, Text, StyleSheet} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {TaskItemSlotsStore} from './store/TaskItemSlots.store';
 import {TaskItemSlotsController} from './TaskItemSlots.controller';
+import {COLORS} from '@/utils';
+
 interface ITaskItemSlotsProps {
   navigation: NavigationProp<any>;
   store: TaskItemSlotsStore;
