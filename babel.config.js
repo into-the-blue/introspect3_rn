@@ -12,6 +12,7 @@ module.exports = {
         rootPathPrefix: '@/',
       },
     ],
+    'react-native-reanimated/plugin',
     // ['@babel/plugin-proposal-class-properties', {loose: false}],
   ],
   // // Babel >= 7.13.0 (https://babeljs.io/docs/en/assumptions)
