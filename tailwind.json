@@ -1,0 +1,22 @@
+{
+	"absolute": {
+		"style": {
+			"position": "absolute"
+		}
+	},
+	"flex": {
+		"style": {
+			"display": "flex"
+		}
+	},
+	"h-8": {
+		"style": {
+			"height": 32
+		}
+	},
+	"w-8": {
+		"style": {
+			"width": 32
+		}
+	}
+}

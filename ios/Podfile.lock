@@ -385,6 +385,8 @@ PODS:
     - React
   - RNGestureHandler (2.2.0):
     - React-Core
+  - RNImageColors (1.5.0):
+    - React-Core
   - RNLocalize (2.1.9):
     - React-Core
   - RNReanimated (2.4.1):
@@ -495,6 +497,7 @@ DEPENDENCIES:
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNImageColors (from `../node_modules/react-native-image-colors`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -601,6 +604,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNImageColors:
+    :path: "../node_modules/react-native-image-colors"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
   RNReanimated:
@@ -666,6 +671,7 @@ SPEC CHECKSUMS:
   RNFastImage: 1f2cab428712a4baaf78d6169eaec7f622556dd7
   RNFS: 3ab21fa6c56d65566d1fb26c2228e2b6132e5e32
   RNGestureHandler: bf572f552ea324acd5b5464b8d30755b2d8c1de6
+  RNImageColors: ed00190f4e743ff4fb1a61285572b5d4e6a0a8f0
   RNLocalize: 291e5e21b53cd30b5205c10ed95d31b0dc9b8d63
   RNReanimated: 32c91e28f5780937b8efc07ddde1bab8d373fe0b
   RNScreens: 522705f2e5c9d27efb17f24aceb2bf8335bc7b8e
