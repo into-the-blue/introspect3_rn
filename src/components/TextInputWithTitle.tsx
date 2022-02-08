@@ -1,5 +1,6 @@
 import React from 'react';
-import {TextInput, WithTitle} from '@/components';
+import {TextInput} from './foundations/TextInput';
+import {WithTitle} from './WithTitle';
 
 interface IProps {
   title: string;

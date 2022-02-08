@@ -1,6 +1,6 @@
 import {observable, action, makeObservable} from 'mobx';
 import {IStore} from '@/utils';
-import {ITask} from '@/types';
+import {ITask, ITaskItem} from '@/types';
 export class TaskStore extends IStore {
   name?: string = undefined;
 
@@ -15,11 +15,19 @@ export class TaskStore extends IStore {
   }
   isLoading: boolean = true;
   task?: ITask = undefined;
+  items: ITaskItem[] = [];
+
   setLoading = (loading: boolean) => {
     this.isLoading = loading;
   };
   setTask = (task: ITask) => {
     this.task = task;
+  };
+  setItems = (items: ITaskItem[]) => {
+    this.items = items;
+  };
+  addItem = (item: ITaskItem) => {
+    this.items = this.items.concat(item);
   };
 
   reset = () => {

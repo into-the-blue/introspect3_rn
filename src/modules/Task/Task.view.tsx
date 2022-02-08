@@ -1,8 +1,11 @@
 import React, {useEffect} from 'react';
-import {View, Button, Text, StyleSheet, Image, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {TaskStore} from './store/Task.store';
 import {TaskController} from './Task.controller';
+import {TaskItem, CreateItemButton} from './components';
+import {Text} from '@/components';
+import {ITaskItem} from '@/types';
 interface ITaskProps {
   navigation: NavigationProp<any>;
   store: TaskStore;
@@ -11,7 +14,7 @@ interface ITaskProps {
 
 export const Task = (props: ITaskProps) => {
   const {controller} = props;
-  const {task, isLoading} = props.store;
+  const {task, isLoading, items} = props.store;
   useEffect(() => {
     controller.viewDidMount();
 
@@ -19,13 +22,21 @@ export const Task = (props: ITaskProps) => {
       controller.viewWillUnmount();
     };
   }, [controller]);
+
+  const _renderTaskItem = ({item}: {item: ITaskItem; index: number}) => {
+    return <TaskItem item={item} />;
+  };
   return (
     <View style={styles.container}>
       <Text>{task?.title}</Text>
-      {/* <FlatList
-      data={task?.items}
-
-      /> */}
+      <FlatList
+        data={items}
+        renderItem={_renderTaskItem}
+        keyExtractor={i => i.id}
+        ListFooterComponent={
+          <CreateItemButton onPressCreateItem={controller.onPressCreateItem} />
+        }
+      />
     </View>
   );
 };

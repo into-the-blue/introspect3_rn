@@ -19,7 +19,7 @@ export class TaskListStore extends IStore {
   };
 
   addNewTask = (task: ITask) => {
-    this.tasks = this.tasks.concat([task]);
+    this.tasks = this.tasks.concat(task);
   };
 
   deleteTask = (taskId: string) => {

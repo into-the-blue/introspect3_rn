@@ -18,4 +18,8 @@ export class TaskController extends IController {
     this.service.cleanListeners();
     this.service.resetStore();
   };
+
+  onPressCreateItem = () => {
+    this.service.goToCreateItem();
+  };
 }

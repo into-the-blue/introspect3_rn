@@ -1,7 +1,7 @@
 import {ALIGNMENT, flattenStyles} from '@/utils';
 import React from 'react';
 import {StyleSheet, View, StyleProp, ViewStyle} from 'react-native';
-import {Text} from './Text';
+import {Text} from './foundations/Text';
 
 interface IProps {
   title: string;

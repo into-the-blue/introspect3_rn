@@ -3,9 +3,9 @@ import {View, StyleSheet} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {CreateTaskStore} from './store/CreateTask.store';
 import {CreateTaskController} from './CreateTask.controller';
-import {TextInputWithTitle, PickImage} from './components';
+import {PickImage} from './components';
 import {COLORS} from '@/utils';
-import {Button} from '@/components';
+import {Button, TextInputWithTitle} from '@/components';
 interface ICreateTaskProps {
   navigation: NavigationProp<any>;
   store: CreateTaskStore;

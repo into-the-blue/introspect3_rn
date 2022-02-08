@@ -1,13 +1,11 @@
 import React from 'react';
 import {
   Pressable,
-  View,
   StyleSheet,
   GestureResponderEvent,
   StyleProp,
   ViewStyle,
   TextStyle,
-  ActivityIndicator,
 } from 'react-native';
 import {Text} from './Text';
 import {ALIGNMENT, COLORS, flattenStyles} from '@/utils';

@@ -10,12 +10,18 @@ export class CreateTaskItemController extends IController {
     return new this(params);
   }
 
-  onPressButton = () => {
-    this.service.increment();
-  };
   viewDidMount = () => {};
   viewWillUnmount = () => {
     this.service.cleanListeners();
     this.service.resetStore();
   };
+
+  onTitleChange = (text: string) => {
+    this.service.onTitleChange(text);
+  };
+  onContentChange = (text: string) => {
+    this.service.onContentChange(text);
+  };
+
+  onPressCreate = () => {};
 }

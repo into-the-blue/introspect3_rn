@@ -24,8 +24,11 @@ export class CreateTaskItemService extends IService {
     return new this(args);
   }
 
-  increment = () => {
-    this.store.increment();
+  onTitleChange = (text: string) => {
+    this.store.setTitle(text);
+  };
+  onContentChange = (text: string) => {
+    this.store.setContent(text);
   };
 
   resetStore = () => {

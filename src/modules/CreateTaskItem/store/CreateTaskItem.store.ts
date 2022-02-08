@@ -5,15 +5,21 @@ export class CreateTaskItemStore extends IStore {
   constructor() {
     super();
     makeObservable(this, {
-      count: observable,
-      increment: action.bound,
+      title: observable,
+      content: observable,
+
+      setTitle: action.bound,
+      setContent: action.bound,
     });
   }
 
-  count: number = 0;
-
-  increment = () => {
-    this.count += 1;
+  title: string = '';
+  content: string = '';
+  setTitle = (text: string) => {
+    this.title = text;
+  };
+  setContent = (text: string) => {
+    this.content = text;
   };
 
   reset = () => {

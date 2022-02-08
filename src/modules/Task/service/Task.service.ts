@@ -29,6 +29,7 @@ export class TaskService extends IService {
     if (!this.store.task) return;
     try {
       const items = await TaskItemAPI.getAllItems(this.store.task.id);
+      this.store.setItems(items);
       console.log(items);
     } catch (err) {
       console.error(err);
@@ -38,6 +39,10 @@ export class TaskService extends IService {
   setDerivedData = ({task}: Pick<TaskStore, 'task'>) => {
     this.store.setTask(task!);
     this.queryTaskItems();
+  };
+
+  goToCreateItem = () => {
+    this.navigation.navigate('CreateTaskItem');
   };
 
   resetStore = () => {

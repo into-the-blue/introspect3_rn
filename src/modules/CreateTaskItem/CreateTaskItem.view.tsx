@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
-import {View, Button, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {CreateTaskItemStore} from './store/CreateTaskItem.store';
 import {CreateTaskItemController} from './CreateTaskItem.controller';
-import {COLORS} from '@/utils';
+import {ALIGNMENT, COLORS} from '@/utils';
+import {Button, ColorPalette, Text, TextInputWithTitle} from '@/components';
 
 interface ICreateTaskItemProps {
   navigation: NavigationProp<any>;
@@ -12,8 +13,7 @@ interface ICreateTaskItemProps {
 }
 
 export const CreateTaskItem = (props: ICreateTaskItemProps) => {
-  const {controller} = props;
-  const {count} = props.store;
+  const {controller, store} = props;
   useEffect(() => {
     controller.viewDidMount();
 
@@ -23,8 +23,22 @@ export const CreateTaskItem = (props: ICreateTaskItemProps) => {
   }, [controller]);
   return (
     <View style={styles.container}>
-      <Text>{`${count}`}</Text>
-      <Button title="increase" onPress={props.controller.onPressButton} />
+      <TextInputWithTitle
+        title={'item name'}
+        inputValue={store.title}
+        onChangeText={controller.onTitleChange}
+      />
+      <TextInputWithTitle
+        title={'Description (optional)'}
+        inputValue={store.content}
+        onChangeText={controller.onContentChange}
+      />
+      <ColorPalette />
+      <Button
+        style={styles.buttonCreate}
+        title={'Create'}
+        onPress={controller.onPressCreate}
+      />
     </View>
   );
 };
@@ -32,7 +46,9 @@ CreateTaskItem.displayName = 'CreateTaskItem';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: COLORS.viewBackground,
+  },
+  buttonCreate: {
+    marginTop: ALIGNMENT.gap,
   },
 });
