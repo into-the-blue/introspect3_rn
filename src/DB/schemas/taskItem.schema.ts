@@ -1,11 +1,12 @@
+import {ObjectId} from 'bson';
 import {ObjectSchema} from 'realm';
 
 export const TaskItemSchema: ObjectSchema = {
   name: 'TaskItems',
   properties: {
-    _id: 'objectId',
-    created_at: 'date',
-    updated_at: 'date',
+    _id: {type: 'objectId', default: new ObjectId()},
+    created_at: {type: 'date', default: new Date()},
+    updated_at: {type: 'date', default: new Date()},
     //
     task_id: 'objectId',
     title: 'string',

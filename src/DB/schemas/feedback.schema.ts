@@ -1,11 +1,12 @@
+import {ObjectId} from 'bson';
 import {ObjectSchema} from 'realm';
 
 export const FeedbackSchema: ObjectSchema = {
   name: 'Feedbacks',
   properties: {
-    _id: 'objectId',
-    created_at: 'date',
-    updated_at: 'date',
+    _id: {type: 'objectId', default: new ObjectId()},
+    created_at: {type: 'date', default: new Date()},
+    updated_at: {type: 'date', default: new Date()},
     //
     target_id: 'objectId',
     content: 'string',

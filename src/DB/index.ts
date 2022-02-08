@@ -1,6 +1,4 @@
 import {toCamelCase, toSnakeCase} from '@/utils';
-import {ObjectId} from 'bson';
-import {isObject} from '@/utils';
 
 import Realm from 'realm';
 import {
@@ -20,6 +18,7 @@ export const DB = new Realm({
     TaskItemSlotSchema,
     FeedbackSchema,
   ],
+  schemaVersion: 1,
 });
 export const COLLECTIONS = {
   Task: TaskSchema.name,
@@ -31,12 +30,16 @@ export const COLLECTIONS = {
 
 type TCOLL = typeof COLLECTIONS;
 
-export const retriveDoc = <T>(name: string, query?: string): Promise<T[]> =>
+export const retriveDoc = <T>(
+  name: string,
+  query?: string,
+  ...args: any[]
+): Promise<T[]> =>
   new Promise((resolve, reject) => {
     try {
       let docs = DB.objects(name);
       if (query) {
-        docs = docs.filtered(query);
+        docs = docs.filtered(query, ...args);
       }
       return resolve(docs.map(o => toCamelCase(o.toJSON())));
     } catch (err) {
@@ -51,12 +54,7 @@ export const createDoc = <K extends keyof TCOLL, T>(
   new Promise((resolve, reject) => {
     try {
       DB.write(() => {
-        const res = DB.create(name, {
-          ...toSnakeCase(properties),
-          _id: new ObjectId(),
-          created_at: new Date(),
-          updated_at: new Date(),
-        });
+        const res = DB.create(name, toSnakeCase(properties));
         resolve(toCamelCase(res.toJSON()));
       });
     } catch (err) {
