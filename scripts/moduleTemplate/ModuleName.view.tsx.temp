@@ -3,6 +3,8 @@ import {View, Button, Text, StyleSheet} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {[ModuleName]Store} from './store/[ModuleName].store';
 import {[ModuleName]Controller} from './[ModuleName].controller';
+import {COLORS} from '@/utils';
+
 interface I[ModuleName]Props {
   navigation: NavigationProp<any>;
   store: [ModuleName]Store;
