@@ -7,6 +7,7 @@ interface IProps {
   task: ITask;
   onPress: (task: ITask) => void;
   onPressDeleteTask: (task: ITask) => void;
+  index: number;
 }
 
 export const TaskListCard = observer(

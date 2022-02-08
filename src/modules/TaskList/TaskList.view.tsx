@@ -19,12 +19,13 @@ export const TaskList = (props: ITaskListProps) => {
       controller.viewWillUnmount();
     };
   }, [controller]);
-  const renderTaskCard = ({item}: {item: ITask; index: number}) => {
+  const renderTaskCard = ({item, index}: {item: ITask; index: number}) => {
     return (
       <TaskListCard
         task={item}
         onPress={controller.onPressTaskCard}
         onPressDeleteTask={controller.onPressDeleteTask}
+        index={index}
       />
     );
   };

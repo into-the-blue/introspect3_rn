@@ -3,9 +3,17 @@ export type {IXenoInjectedProps} from '../utils/xeno';
 import {TaskListEvents} from '../modules/TaskList';
 import {TaskEvents} from '../modules/Task';
 import {CreateTaskEvents} from '../modules/CreateTask';
+import {CreateTaskItemEvents} from '../modules/CreateTaskItem';
+import {TaskItemSlotsEvents} from '../modules/TaskItemSlots';
+import {CreateTaskItemSlotEvents} from '../modules/CreateTaskItemSlot';
 // <hook> import module events here </hook>
 
-export type IEvents = TaskListEvents & TaskEvents & CreateTaskEvents;
+export type IEvents = TaskListEvents &
+  TaskEvents &
+  CreateTaskEvents &
+  CreateTaskItemEvents &
+  TaskItemSlotsEvents &
+  CreateTaskItemSlotEvents;
 // <hook> add event type to end </hook>
 export type IReactComponent<P = any> =
   | React.ClassicComponentClass<P>

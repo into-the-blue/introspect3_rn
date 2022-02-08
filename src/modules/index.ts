@@ -12,6 +12,24 @@ import {
   CreateTaskStore,
   CreateTaskService,
 } from './CreateTask';
+import {
+  CreateTaskItem,
+  CreateTaskItemController,
+  CreateTaskItemStore,
+  CreateTaskItemService,
+} from './CreateTaskItem';
+import {
+  TaskItemSlots,
+  TaskItemSlotsController,
+  TaskItemSlotsStore,
+  TaskItemSlotsService,
+} from './TaskItemSlots';
+import {
+  CreateTaskItemSlot,
+  CreateTaskItemSlotController,
+  CreateTaskItemSlotStore,
+  CreateTaskItemSlotService,
+} from './CreateTaskItemSlot';
 // <HOOK> import module properties here </HOOK>
 
 export const TaskListPage = (() => {
@@ -43,5 +61,32 @@ export const CreateTaskPage = (() => {
     return {controller, store};
   };
   return connect(generateStoreController)(CreateTask);
+})();
+export const CreateTaskItemPage = (() => {
+  const generateStoreController = ({navigation}: any) => {
+    const store = CreateTaskItemStore.getNamedStore('CreateTaskItem');
+    const service = CreateTaskItemService.new({store, navigation});
+    const controller = CreateTaskItemController.new({service});
+    return {controller, store};
+  };
+  return connect(generateStoreController)(CreateTaskItem);
+})();
+export const TaskItemSlotsPage = (() => {
+  const generateStoreController = ({navigation}: any) => {
+    const store = TaskItemSlotsStore.getNamedStore('TaskItemSlots');
+    const service = TaskItemSlotsService.new({store, navigation});
+    const controller = TaskItemSlotsController.new({service});
+    return {controller, store};
+  };
+  return connect(generateStoreController)(TaskItemSlots);
+})();
+export const CreateTaskItemSlotPage = (() => {
+  const generateStoreController = ({navigation}: any) => {
+    const store = CreateTaskItemSlotStore.getNamedStore('CreateTaskItemSlot');
+    const service = CreateTaskItemSlotService.new({store, navigation});
+    const controller = CreateTaskItemSlotController.new({service});
+    return {controller, store};
+  };
+  return connect(generateStoreController)(CreateTaskItemSlot);
 })();
 // <HOOK> connect module here </HOOK>
