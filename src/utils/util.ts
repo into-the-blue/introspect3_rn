@@ -66,3 +66,30 @@ export const toSnakeCase = toCase(snakeCase);
 
 export const sleep = (time: number) =>
   new Promise(resolve => setTimeout(resolve, time));
+
+export const isNull = (value: any) =>
+  value === null || typeof value === 'undefined';
+
+export const pick = <T, K extends keyof T>(
+  obj: T,
+  keys: K[],
+  ignoreNull: boolean = false,
+): Pick<T, K> => {
+  const toReturn: any = {};
+  keys.forEach(key => {
+    const value = obj[key];
+    if (ignoreNull && isNull(value)) return;
+    toReturn[key] = value;
+  });
+  return toReturn;
+};
+
+export const omit = <T, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> => {
+  const toReturn: any = {};
+  Object.keys(obj).forEach((key: any) => {
+    if (keys.includes(key)) return;
+    const value = obj[key as K];
+    toReturn[key] = value;
+  });
+  return toReturn;
+};

@@ -4,7 +4,8 @@ import {NavigationProp} from '@react-navigation/native';
 import {CreateTaskItemStore} from './store/CreateTaskItem.store';
 import {CreateTaskItemController} from './CreateTaskItem.controller';
 import {ALIGNMENT, COLORS} from '@/utils';
-import {Button, ColorPalette, Text, TextInputWithTitle} from '@/components';
+import {Button, ColorPalette, TextInputWithTitle} from '@/components';
+import {useTailwind} from 'tailwind-rn/dist';
 
 interface ICreateTaskItemProps {
   navigation: NavigationProp<any>;
@@ -14,9 +15,9 @@ interface ICreateTaskItemProps {
 
 export const CreateTaskItem = (props: ICreateTaskItemProps) => {
   const {controller, store} = props;
+  const tw = useTailwind();
   useEffect(() => {
     controller.viewDidMount();
-
     return () => {
       controller.viewWillUnmount();
     };
@@ -32,8 +33,15 @@ export const CreateTaskItem = (props: ICreateTaskItemProps) => {
         title={'Description (optional)'}
         inputValue={store.content}
         onChangeText={controller.onContentChange}
+        textInputProps={{multiline: true, style: tw('h-32')}}
       />
-      <ColorPalette />
+      {!!store.paletteColors.length && (
+        <ColorPalette
+          onPressColor={controller.onPressColor}
+          colors={store.paletteColors}
+          num={21}
+        />
+      )}
       <Button
         style={styles.buttonCreate}
         title={'Create'}

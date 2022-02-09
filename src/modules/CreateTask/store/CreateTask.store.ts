@@ -30,11 +30,13 @@ export class CreateTaskStore extends IStore {
     width,
     height,
     size,
+    mime,
   }: {
     imageUrl: string;
     width: number;
     height: number;
     size: number;
+    mime: string;
   }) => {
     this.imageUrl = imageUrl;
     this.image = {
@@ -43,6 +45,7 @@ export class CreateTaskStore extends IStore {
       height,
       size,
       imageUrl,
+      mime,
     };
   };
 

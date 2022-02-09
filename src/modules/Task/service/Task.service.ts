@@ -42,6 +42,7 @@ export class TaskService extends IService {
   };
 
   goToCreateItem = () => {
+    this.xeno.trigger('CREATE_TASK_ITEM_INITIAL_DATA', {task: this.store.task});
     this.navigation.navigate('CreateTaskItem');
   };
 

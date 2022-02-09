@@ -10,6 +10,7 @@ interface IProps {
 }
 export const ColorPie = ({color, isSelected, onPress}: IProps) => {
   const tw = useTailwind();
+  const isLightColor = chroma(color).luminance() > 0.3;
   return (
     <Pressable
       onPress={() => onPress(color)}
@@ -18,7 +19,9 @@ export const ColorPie = ({color, isSelected, onPress}: IProps) => {
         {backgroundColor: color},
         isSelected && tw('border-4'),
         isSelected && {
-          borderColor: chroma(color).darken(1.5).hex(),
+          borderColor: isLightColor
+            ? chroma(color).darken(1.5).hex()
+            : chroma(color).brighten(1.5).hex(),
         },
       ]}
     />

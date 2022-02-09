@@ -10,7 +10,9 @@ export class CreateTaskItemController extends IController {
     return new this(params);
   }
 
-  viewDidMount = () => {};
+  viewDidMount = () => {
+    this.service.initListeners();
+  };
   viewWillUnmount = () => {
     this.service.cleanListeners();
     this.service.resetStore();
@@ -24,4 +26,8 @@ export class CreateTaskItemController extends IController {
   };
 
   onPressCreate = () => {};
+
+  onPressColor = (c: string) => {
+    this.service.setSelectedColor(c);
+  };
 }

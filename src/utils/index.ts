@@ -6,3 +6,4 @@ export * from './globalXeno';
 export * from './util';
 export * from './constants/design';
 export * from './constants/deviceInfo';
+export * from './getImageColor';

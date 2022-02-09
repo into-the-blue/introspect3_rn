@@ -67,13 +67,14 @@ export class CreateTaskService extends IService {
         // no selected image
         return;
       }
-      const {fileSize, uri, height, width} = assets[0];
+      const {fileSize, uri, height, width, type} = assets[0];
       const imageUrl = await this.copyImageToAppDoc(uri!, fileSize!);
       this.store.setLocalImage({
         imageUrl: imageUrl!,
         height: height!,
         width: width!,
         size: fileSize!,
+        mime: type!,
       });
     } catch (err) {}
   };

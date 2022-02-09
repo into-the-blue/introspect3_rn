@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import chroma from 'chroma-js';
 import {ColorPie} from './ColorPie';
 import {useTailwind} from 'tailwind-rn';
@@ -7,8 +7,9 @@ import {useTailwind} from 'tailwind-rn';
 interface IProps {
   colors?: string[];
   num?: number;
+  onPressColor: (color: string) => void;
 }
-export const ColorPalette = ({colors, num = 21}: IProps) => {
+export const ColorPalette = ({colors, num = 21, onPressColor}: IProps) => {
   const tw = useTailwind();
   const [scaledColors, setColors] = useState<string[]>([]);
   const [selectedColor, setSelectedColor] = useState<string>('');
@@ -25,7 +26,13 @@ export const ColorPalette = ({colors, num = 21}: IProps) => {
       .colors(num);
     setColors(_colors);
     setSelectedColor(_colors[0]);
-  }, [num, colors]);
+    onPressColor(_colors[0]);
+  }, [num, colors, onPressColor]);
+
+  const _onPressColor = (c: string) => {
+    setSelectedColor(c);
+    onPressColor(c);
+  };
   return (
     <View style={tw('flex-row flex-wrap justify-center')}>
       {scaledColors.map((color, idx) => (
@@ -33,7 +40,7 @@ export const ColorPalette = ({colors, num = 21}: IProps) => {
           key={'color-pie' + idx}
           color={color}
           isSelected={selectedColor === color}
-          onPress={c => setSelectedColor(c)}
+          onPress={_onPressColor}
         />
       ))}
     </View>
