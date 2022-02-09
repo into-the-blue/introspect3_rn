@@ -1,5 +1,5 @@
 import React from 'react';
-import {observer} from 'mobx-react';
+import {observer} from 'mobx-react-lite';
 import {StyleSheet, View, Pressable} from 'react-native';
 import {ITask} from '@/types';
 import {Text, Image, Button} from '@/components';

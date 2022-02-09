@@ -6,6 +6,20 @@
   margin: 0.25rem
 }
 
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem
+}
+
+.mt-2 {
+  margin-top: 0.5rem
+}
+
 .flex {
   display: flex
 }
@@ -26,6 +40,10 @@
   height: 8rem
 }
 
+.h-24 {
+  height: 6rem
+}
+
 .w-11 {
   width: 2.75rem
 }
@@ -38,6 +56,26 @@
   width: 5rem
 }
 
+.w-fit {
+  width: fit-content
+}
+
+.w-full {
+  width: 100%
+}
+
+.w-auto {
+  width: auto
+}
+
+.flex-auto {
+  flex: 1 1 auto
+}
+
+.flex-1 {
+  flex: 1 1 0%
+}
+
 .flex-row {
   flex-direction: row
 }
@@ -46,12 +84,20 @@
   flex-wrap: wrap
 }
 
+.items-center {
+  align-items: center
+}
+
 .justify-center {
   justify-content: center
 }
 
 .rounded-full {
   border-radius: 9999px
+}
+
+.rounded-xl {
+  border-radius: 0.75rem
 }
 
 .border-4 {

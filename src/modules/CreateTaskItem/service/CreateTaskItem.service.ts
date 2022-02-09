@@ -99,6 +99,6 @@ export class CreateTaskItemService extends IService {
   };
 
   setSelectedColor = (c: string) => {
-    this.store.setColor(c);
+    this.store.setBackgroundColor(c);
   };
 }

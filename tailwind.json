@@ -12,6 +12,23 @@
 			"marginLeft": 4
 		}
 	},
+	"mx-8": {
+		"style": {
+			"marginLeft": 32,
+			"marginRight": 32
+		}
+	},
+	"my-2": {
+		"style": {
+			"marginTop": 8,
+			"marginBottom": 8
+		}
+	},
+	"mt-2": {
+		"style": {
+			"marginTop": 8
+		}
+	},
 	"flex": {
 		"style": {
 			"display": "flex"
@@ -37,6 +54,11 @@
 			"height": 128
 		}
 	},
+	"h-24": {
+		"style": {
+			"height": 96
+		}
+	},
 	"w-11": {
 		"style": {
 			"width": 44
@@ -52,6 +74,35 @@
 			"width": 80
 		}
 	},
+	"w-fit": {
+		"style": {
+			"width": "fit-content"
+		}
+	},
+	"w-full": {
+		"style": {
+			"width": "100%"
+		}
+	},
+	"w-auto": {
+		"style": {
+			"width": "auto"
+		}
+	},
+	"flex-auto": {
+		"style": {
+			"flexGrow": 1,
+			"flexShrink": 1,
+			"flexBasis": "auto"
+		}
+	},
+	"flex-1": {
+		"style": {
+			"flexGrow": 1,
+			"flexShrink": 1,
+			"flexBasis": "0%"
+		}
+	},
 	"flex-row": {
 		"style": {
 			"flexDirection": "row"
@@ -60,6 +111,11 @@
 	"flex-wrap": {
 		"style": {
 			"flexWrap": "wrap"
+		}
+	},
+	"items-center": {
+		"style": {
+			"alignItems": "center"
 		}
 	},
 	"justify-center": {
@@ -73,6 +129,14 @@
 			"borderTopRightRadius": 9999,
 			"borderBottomRightRadius": 9999,
 			"borderBottomLeftRadius": 9999
+		}
+	},
+	"rounded-xl": {
+		"style": {
+			"borderTopLeftRadius": 12,
+			"borderTopRightRadius": 12,
+			"borderBottomRightRadius": 12,
+			"borderBottomLeftRadius": 12
 		}
 	},
 	"border-4": {

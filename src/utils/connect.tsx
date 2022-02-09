@@ -1,6 +1,5 @@
-import {observer} from 'mobx-react';
+import {observer} from 'mobx-react-lite';
 import React, {useEffect} from 'react';
-import {IReactComponent} from '@/types';
 export const connect =
   (
     generator: (props: any) => {
@@ -8,7 +7,7 @@ export const connect =
       store: any;
     } & {[key: string]: any},
   ) =>
-  (Comp: IReactComponent<any>) => {
+  (Comp: React.FC) => {
     function Composed(props: any) {
       const ObsComp = observer(Comp);
       useEffect(() => {

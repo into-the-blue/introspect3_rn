@@ -9,7 +9,9 @@ export class CreateTaskItemStore extends IStore {
       title: observable,
       content: observable,
       paletteColors: observable,
+      backgroundColor: observable,
       //
+      setBackgroundColor: action.bound,
       setPaletteColors: action.bound,
       setTitle: action.bound,
       setContent: action.bound,
@@ -18,7 +20,7 @@ export class CreateTaskItemStore extends IStore {
   task?: ITask = undefined;
   title: string = '';
   content: string = '';
-  color?: string = undefined;
+  backgroundColor?: string = undefined;
   paletteColors: string[] = [];
   setTitle = (text: string) => {
     this.title = text;
@@ -27,8 +29,8 @@ export class CreateTaskItemStore extends IStore {
     this.content = text;
   };
 
-  setColor = (c: string) => {
-    this.color = c;
+  setBackgroundColor = (c: string) => {
+    this.backgroundColor = c;
   };
 
   setTask = (task: ITask) => {
