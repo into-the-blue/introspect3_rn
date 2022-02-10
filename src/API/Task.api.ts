@@ -1,17 +1,17 @@
 import {COLLECTIONS, createDoc, retriveDoc, deleteDocFromObjectId} from '@/DB';
 import {ITask} from '@/types';
 export class TaskAPI {
-  static createTask = async (
+  static createTask = (
     task: Pick<ITask, 'title' | 'image'>,
   ): Promise<ITask> => {
-    return await createDoc(COLLECTIONS.Task, task);
+    return createDoc(COLLECTIONS.Task, task);
   };
 
-  static getAllTasks = async () => {
+  static getAllTasks = () => {
     return retriveDoc<ITask>(COLLECTIONS.Task);
   };
 
-  static deleteTask = async (id: string) => {
+  static deleteTask = (id: string) => {
     return deleteDocFromObjectId(COLLECTIONS.Task, id);
   };
 }

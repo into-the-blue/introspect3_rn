@@ -49,7 +49,7 @@ export class TaskListService extends IService {
   };
 
   initListeners = () => {
-    this.xeno.on('TASKLIST_NEW_TASK', (task: ITask) => {
+    this.on('TASKLIST_NEW_TASK', (task: ITask) => {
       this.store.addNewTask(task);
     });
   };

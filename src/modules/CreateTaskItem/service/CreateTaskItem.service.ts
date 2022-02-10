@@ -3,8 +3,9 @@ import {CreateTaskItemStore} from '@/stores';
 import {NavigationProp} from '@react-navigation/native';
 import {getImageColors} from '@/utils';
 import chroma from 'chroma-js';
-import {flatten} from 'lodash';
 import RNFS from 'react-native-fs';
+import {TaskItemAPI} from '@/API';
+import {ITaskItem} from '@/types';
 
 export class CreateTaskItemService extends IService {
   store: CreateTaskItemStore;
@@ -92,6 +93,30 @@ export class CreateTaskItemService extends IService {
   };
   onContentChange = (text: string) => {
     this.store.setContent(text);
+  };
+
+  /**
+   *
+   *
+   * @memberof CreateTaskItemService
+   * create task item and add it to list
+   */
+  createTaskItem = async () => {
+    if (!this.store.title.length || !this.store.backgroundColor) return;
+    try {
+      const taskItem = await TaskItemAPI.createItem(
+        this.store.task!.id,
+        this.store.taskItem,
+      );
+      this, this.addTaskItemToList(taskItem);
+      this.navigation.goBack();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  addTaskItemToList = (item: ITaskItem) => {
+    this.trigger('TASK_ON_NEW_ITEM', item);
   };
 
   resetStore = () => {

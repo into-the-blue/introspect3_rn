@@ -25,7 +25,9 @@ export class CreateTaskItemController extends IController {
     this.service.onContentChange(text);
   };
 
-  onPressCreate = () => {};
+  onPressCreate = () => {
+    this.service.createTaskItem();
+  };
 
   onPressColor = (c: string) => {
     this.service.setSelectedColor(c);

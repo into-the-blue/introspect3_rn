@@ -68,7 +68,7 @@ export class CreateTaskService extends IService {
         return;
       }
       const {fileSize, uri, height, width, type} = assets[0];
-      const imageUrl = await this.copyImageToAppDoc(uri!, fileSize!);
+      const imageUrl = await this.copyImageToAppDocDir(uri!, fileSize!);
       this.store.setLocalImage({
         imageUrl: imageUrl!,
         height: height!,
@@ -86,7 +86,7 @@ export class CreateTaskService extends IService {
     });
   };
 
-  copyImageToAppDoc = async (pth: string, fileSize: number) => {
+  copyImageToAppDocDir = async (pth: string, fileSize: number) => {
     const {freeSpace} = await getFSInfo();
     if (freeSpace < fileSize) {
       Alert.alert('No enough space');
@@ -106,7 +106,7 @@ export class CreateTaskService extends IService {
   getRandomImage = async () => {};
 
   addNewTaskToList = (task: ITask) => {
-    this.xeno.trigger('TASKLIST_NEW_TASK', task);
+    this.trigger('TASKLIST_NEW_TASK', task);
   };
   createTask = async () => {
     if (!this.store.image || !this.store.title.length) {

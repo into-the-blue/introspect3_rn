@@ -9,8 +9,12 @@ export class TaskStore extends IStore {
     makeObservable(this, {
       task: observable,
       isLoading: observable,
+      items: observable,
+      //
       setLoading: action.bound,
       setTask: action.bound,
+      setItems: action.bound,
+      addItem: action.bound,
     });
   }
   isLoading: boolean = true;

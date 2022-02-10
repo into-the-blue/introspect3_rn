@@ -1,5 +1,6 @@
 import {IController} from '@/utils';
 import {TaskService} from '@/services';
+import {ITaskItem} from '@/types';
 export class TaskController extends IController {
   service: TaskService;
   constructor({service}: {service: TaskService}) {
@@ -21,5 +22,9 @@ export class TaskController extends IController {
 
   onPressCreateItem = () => {
     this.service.goToCreateItem();
+  };
+
+  onPressTaskItem = (item: ITaskItem) => {
+    this.service.goToItemSlot(item);
   };
 }

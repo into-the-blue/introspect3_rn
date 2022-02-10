@@ -1,12 +1,12 @@
 import React, {useRef, useState} from 'react';
 import {
   NativeSyntheticEvent,
-  StyleSheet,
   TextInput as RNTextInput,
   TextInputFocusEventData,
   TextInputProps,
 } from 'react-native';
-import {COLORS, flattenStyles} from '@/utils';
+import {flattenStyles} from '@/utils';
+import {useTailwind} from 'tailwind-rn/dist';
 
 const DEFAULT_PROPS: TextInputProps = {
   autoCorrect: false,
@@ -18,6 +18,7 @@ interface IProps extends TextInputProps {}
 export const TextInput = ({style, onFocus, onBlur, ...restProps}: IProps) => {
   const _textInputRef = useRef<RNTextInput>(null);
   const [focused, setFocus] = useState<Boolean>(false);
+  const tw = useTailwind();
   const clearInput = () => {
     _textInputRef.current?.clear();
   };
@@ -31,7 +32,7 @@ export const TextInput = ({style, onFocus, onBlur, ...restProps}: IProps) => {
   };
   return (
     <RNTextInput
-      style={[styles.textInput, flattenStyles(style)]}
+      style={[tw('bg-white h-8 px-2 py-1.5 m-0 rounded'), flattenStyles(style)]}
       onFocus={_onFocus}
       onBlur={_onBlur}
       ref={_textInputRef}
@@ -40,13 +41,3 @@ export const TextInput = ({style, onFocus, onBlur, ...restProps}: IProps) => {
     />
   );
 };
-
-const styles = StyleSheet.create({
-  textInput: {
-    backgroundColor: COLORS.white,
-    // borderBottomWidth: 1,
-    height: 30,
-    padding: 0,
-    margin: 0,
-  },
-});

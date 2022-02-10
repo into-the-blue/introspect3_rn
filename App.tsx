@@ -25,11 +25,26 @@ import {TailwindProvider} from 'tailwind-rn';
 import utilities from './tailwind.json';
 
 const Stack = createNativeStackNavigator();
+// https://ethercreative.github.io/react-native-shadow-generator/
+const tailwindExtensions = {
+  shadow: {
+    style: {
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 6,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 8,
+      elevation: 13,
+    },
+  },
+};
 
 export default function App() {
   return (
     <GestureHandlerRootView style={styles.container}>
-      <TailwindProvider utilities={utilities}>
+      <TailwindProvider utilities={{...utilities, ...tailwindExtensions}}>
         <NavigationContainer>
           <Stack.Navigator initialRouteName={'TaskList'}>
             <Stack.Screen name={'TaskList'} component={TaskListPage} />

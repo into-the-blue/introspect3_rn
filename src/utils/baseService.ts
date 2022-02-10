@@ -3,9 +3,9 @@ import {Xeno} from './xeno';
 import {IEvents} from '../types';
 import {Subscription} from 'rxjs';
 export class IService {
-  xeno: Xeno<IEvents>;
-  _unlistens: Function[] = [];
-  _subscriptions: Subscription[] = [];
+  private xeno: Xeno<IEvents>;
+  private _unlistens: Function[] = [];
+  private _subscriptions: Subscription[] = [];
   constructor() {
     this.xeno = xeno;
   }

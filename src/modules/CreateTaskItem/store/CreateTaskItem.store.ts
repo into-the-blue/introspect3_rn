@@ -1,6 +1,6 @@
 import {observable, action, makeObservable} from 'mobx';
 import {IStore} from '@/utils';
-import {ITask} from '@/types';
+import {ITask, ITaskItem} from '@/types';
 export class CreateTaskItemStore extends IStore {
   name?: string = undefined;
   constructor() {
@@ -22,6 +22,14 @@ export class CreateTaskItemStore extends IStore {
   content: string = '';
   backgroundColor?: string = undefined;
   paletteColors: string[] = [];
+
+  get taskItem(): Pick<ITaskItem, 'title' | 'backgroundColor' | 'content'> {
+    return {
+      title: this.title,
+      backgroundColor: this.backgroundColor!,
+      content: this.content,
+    };
+  }
   setTitle = (text: string) => {
     this.title = text;
   };

@@ -26,7 +26,13 @@ export const CreateTaskItem = (props: ICreateTaskItemProps) => {
   return (
     <View style={styles.container}>
       {backgroundColor && (
-        <TaskItem taskItem={{title, content, backgroundColor}} />
+        <TaskItem
+          taskItem={{
+            title: title.length ? title : 'Your title here',
+            content,
+            backgroundColor,
+          }}
+        />
       )}
       <TextInputWithTitle
         title={`item name (${title.length}/20)`}
@@ -40,7 +46,12 @@ export const CreateTaskItem = (props: ICreateTaskItemProps) => {
         title={`Description (optional ${content.length}/100)`}
         inputValue={content}
         onChangeText={controller.onContentChange}
-        textInputProps={{multiline: true, style: tw('h-32'), maxLength: 100}}
+        textInputProps={{
+          multiline: true,
+          style: tw('h-32'),
+          maxLength: 100,
+          numberOfLines: 5,
+        }}
       />
       {!!paletteColors.length && (
         <ColorPalette
