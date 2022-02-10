@@ -35,6 +35,8 @@
     "react-native-reanimated": "^2.4.1",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.1",
+    "react-native-shadow-2": "^6.0.2",
+    "react-native-svg": "^12.1.1",
     "realm": "^10.20.0-beta.1",
     "rxjs": "^7.5.1",
     "tailwind-rn": "^4.2.0"

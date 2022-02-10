@@ -65,7 +65,9 @@ export class TaskService extends IService {
    * @memberof TaskService
    * when press task item
    */
-  goToItemSlot = (item: ITaskItem) => {};
+  goToItemSlot = (item: ITaskItem) => {
+    this.navigation.navigate('TaskItemSlots');
+  };
 
   resetStore = () => {
     this.store.reset();
