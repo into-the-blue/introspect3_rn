@@ -49,6 +49,8 @@ class Handlers {
  * @class Xeno3
  * implementation 2: each time create a new subject
  */
+
+type HandlerFunction<T, K extends keyof T> = (params: T[K]) => void;
 export class Xeno<T> {
   events: Map<string, Handlers> = new Map();
   _futureEvents: Map<string, TFutureTask> = new Map();
@@ -74,7 +76,7 @@ export class Xeno<T> {
   };
   _executeFutureEvent = <K extends keyof T>(
     eventName: K,
-    handler: Function,
+    handler: HandlerFunction<T, K>,
   ) => {
     //only first listener will receive event
     const task = this._futureEvents.get(eventName as string)!;
@@ -90,7 +92,7 @@ export class Xeno<T> {
 
   _checkIfHasFutureEvent = <K extends keyof T>(
     eventName: K,
-    handler: Function,
+    handler: HandlerFunction<T, K>,
   ) => {
     if (this._futureEvents.has(eventName as string)) {
       log('LISTENER', eventName, 'FUTURE TASK TRIGGERED');
@@ -98,7 +100,7 @@ export class Xeno<T> {
     }
   };
 
-  on = <K extends keyof T>(eventName: K, handler: Function) => {
+  on = <K extends keyof T>(eventName: K, handler: HandlerFunction<T, K>) => {
     if (!this.events.get(eventName as string)) {
       this.events.set(eventName as string, new Handlers(eventName as string));
     }
