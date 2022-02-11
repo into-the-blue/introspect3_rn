@@ -2,14 +2,15 @@ import {ReplaySubject, of, from} from 'rxjs';
 import {mergeMap, switchMap, take} from 'rxjs/operators';
 import {TFutureTask} from './type';
 import {map2Array, toObservable, isDev} from './util';
-
+import {LOG} from '../logger';
+const xenoLog = LOG.extend('XENO');
 const log = (
   target: 'LISTENER' | 'SENDER',
   eventName: string | any,
   ...args: any[]
 ) => {
   if (isDev) {
-    console.log('[XENO]', `[${target}]`, eventName, ...args);
+    xenoLog.debug(`[${target}]`, eventName, ...args);
   }
 };
 class Handlers {
