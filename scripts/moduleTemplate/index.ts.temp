@@ -1,5 +1,17 @@
-export {[ModuleName]} from './[ModuleName].view';
-export {[ModuleName]Controller} from './[ModuleName].controller';
-export {[ModuleName]Service} from './service/[ModuleName].service';
-export {[ModuleName]Store} from './store/[ModuleName].store';
+import {[ModuleName]} from './[ModuleName].view';
+import {[ModuleName]Controller} from './[ModuleName].controller';
+import {[ModuleName]Service} from './service/[ModuleName].service';
+import {[ModuleName]Store} from './store/[ModuleName].store';
+import {connect} from '@/utils';
 export * from './event/[ModuleName].event';
+export {[ModuleName], [ModuleName]Controller, [ModuleName]Service, [ModuleName]Store};
+
+export const [ModuleName]Page = (() => {
+  const generateStoreController = ({navigation}: any) => {
+    const store = [ModuleName]Store.getNamedStore('[ModuleName]');
+    const service = [ModuleName]Service.new({store, navigation});
+    const controller = [ModuleName]Controller.new({service});
+    return {controller, store};
+  };
+  return connect(generateStoreController)([ModuleName]);
+})();

@@ -23,9 +23,7 @@ TYPE_EVENT_IMPORT_HOOK = '// <hook> import module events here </hook>'
 TYPE_EVENT_ADD_TO_END_HOOK = '// <hook> add event type to end </hook>'
 
 # modules/index
-# MODULE_STORE_HOOK = '// <HOOK> import module store here </HOOK>'
-MODULE_PROPERTIES_EXPORTS_HOOK = '// <HOOK> import module properties here </HOOK>'
-MODULE_CONNECT_HOOK = '// <HOOK> connect module here </HOOK>'
+EXPORT_MODULE_HOOK = '// <HOOK> export module here </HOOK>'
 
 # App
 APP_PAGE_HOOK = '// <HOOK> import new Page here </HOOK>'
@@ -168,13 +166,11 @@ def linkConfig(module_name, upper_cased):
     _writeLineUpon(service_hook_pth, {SERVICE_HOOK: service_str})
 
     # src/modules/index.ts
-    module_str2 = "import {[ModuleName],[ModuleName]Controller,[ModuleName]Store,[ModuleName]Service,} from './[ModuleName]';"
-    module_str2 = module_str2.replace('[ModuleName]', module_name)
+    module_str = "export {[ModuleName]Page} from './[ModuleName]';"
+    module_str = module_str.replace('[ModuleName]', module_name)
 
-    module_str3 = "export const [ModuleName]Page = (() => {const generateStoreController = ({navigation}: any) => {const store = [ModuleName]Store.getNamedStore('[ModuleName]');const service = [ModuleName]Service.new({store, navigation});const controller = [ModuleName]Controller.new({service});return {controller,store,};};return connect(generateStoreController)([ModuleName]);})();"
-    module_str3 = module_str3.replace('[ModuleName]', module_name)
     _writeLineUpon(module_hook_pth, {
-                   MODULE_PROPERTIES_EXPORTS_HOOK: module_str2, MODULE_CONNECT_HOOK: module_str3})
+                   EXPORT_MODULE_HOOK: module_str})
 
     # App.tsx
     app_str1 = "[ModuleName]Page,".replace('[ModuleName]', module_name)
