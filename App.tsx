@@ -15,6 +15,7 @@ import {
   CreateTaskItemPage,
   TaskItemSlotsPage,
   CreateTaskItemSlotPage,
+  TagsPage,
   // <HOOK> import new Page here </HOOK>
 } from './src/modules';
 import {NavigationContainer} from '@react-navigation/native';
@@ -62,6 +63,7 @@ export default function App() {
               name={'CreateTaskItemSlot'}
               component={CreateTaskItemSlotPage}
             />
+            <Stack.Screen name={'Tags'} component={TagsPage} />
             {/* <HOOK> register new page here </HOOK> */}
           </Stack.Navigator>
         </NavigationContainer>

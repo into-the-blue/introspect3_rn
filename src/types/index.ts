@@ -6,6 +6,7 @@ import {CreateTaskEvents} from '../modules/CreateTask';
 import {CreateTaskItemEvents} from '../modules/CreateTaskItem';
 import {TaskItemSlotsEvents} from '../modules/TaskItemSlots';
 import {CreateTaskItemSlotEvents} from '../modules/CreateTaskItemSlot';
+import {TagsEvents} from '../modules/Tags';
 // <hook> import module events here </hook>
 
 export type IEvents = TaskListEvents &
@@ -13,7 +14,8 @@ export type IEvents = TaskListEvents &
   CreateTaskEvents &
   CreateTaskItemEvents &
   TaskItemSlotsEvents &
-  CreateTaskItemSlotEvents;
+  CreateTaskItemSlotEvents &
+  TagsEvents;
 // <hook> add event type to end </hook>
 export type IReactComponent<P = any> =
   | React.ClassicComponentClass<P>
