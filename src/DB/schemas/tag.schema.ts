@@ -1,12 +1,11 @@
-import {ObjectId} from 'bson';
 import {ObjectSchema} from 'realm';
 
 export const TagSchema: ObjectSchema = {
   name: 'Tags',
   properties: {
-    _id: {type: 'objectId', default: new ObjectId()},
-    created_at: {type: 'date', default: new Date()},
-    updated_at: {type: 'date', default: new Date()},
+    _id: {type: 'objectId'},
+    created_at: {type: 'date'},
+    updated_at: {type: 'date'},
     //
     title: 'string',
     type: 'string',

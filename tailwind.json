@@ -4,31 +4,6 @@
 			"position": "absolute"
 		}
 	},
-	"bottom-8": {
-		"style": {
-			"bottom": 32
-		}
-	},
-	"left-4": {
-		"style": {
-			"left": 16
-		}
-	},
-	"bottom-4": {
-		"style": {
-			"bottom": 16
-		}
-	},
-	"right-4": {
-		"style": {
-			"right": 16
-		}
-	},
-	"bottom-12": {
-		"style": {
-			"bottom": 48
-		}
-	},
 	"bottom-16": {
 		"style": {
 			"bottom": 64
@@ -61,31 +36,9 @@
 			"marginRight": 32
 		}
 	},
-	"mx-4": {
-		"style": {
-			"marginLeft": 16,
-			"marginRight": 16
-		}
-	},
-	"mx-6": {
-		"style": {
-			"marginLeft": 24,
-			"marginRight": 24
-		}
-	},
-	"mt-2": {
-		"style": {
-			"marginTop": 8
-		}
-	},
 	"mt-4": {
 		"style": {
 			"marginTop": 16
-		}
-	},
-	"mt-6": {
-		"style": {
-			"marginTop": 24
 		}
 	},
 	"flex": {
@@ -93,9 +46,9 @@
 			"display": "flex"
 		}
 	},
-	"h-24": {
+	"h-16": {
 		"style": {
-			"height": 96
+			"height": 64
 		}
 	},
 	"h-11": {
@@ -103,29 +56,14 @@
 			"height": 44
 		}
 	},
-	"h-32": {
-		"style": {
-			"height": 128
-		}
-	},
 	"h-8": {
 		"style": {
 			"height": 32
 		}
 	},
-	"h-20": {
+	"h-32": {
 		"style": {
-			"height": 80
-		}
-	},
-	"h-16": {
-		"style": {
-			"height": 64
-		}
-	},
-	"h-4": {
-		"style": {
-			"height": 16
+			"height": 128
 		}
 	},
 	"h-12": {
@@ -138,14 +76,14 @@
 			"width": "auto"
 		}
 	},
-	"w-11": {
-		"style": {
-			"width": 44
-		}
-	},
 	"w-4": {
 		"style": {
 			"width": 16
+		}
+	},
+	"w-11": {
+		"style": {
+			"width": 44
 		}
 	},
 	"w-12": {
@@ -178,11 +116,6 @@
 	"justify-center": {
 		"style": {
 			"justifyContent": "center"
-		}
-	},
-	"overflow-hidden": {
-		"style": {
-			"overflow": "hidden"
 		}
 	},
 	"rounded-xl": {
@@ -243,28 +176,10 @@
 			"backgroundColor": "rgb(255 255 255 / var(--tw-bg-opacity))"
 		}
 	},
-	"px-4": {
-		"style": {
-			"paddingLeft": 16,
-			"paddingRight": 16
-		}
-	},
-	"py-4": {
-		"style": {
-			"paddingTop": 16,
-			"paddingBottom": 16
-		}
-	},
 	"px-2": {
 		"style": {
 			"paddingLeft": 8,
 			"paddingRight": 8
-		}
-	},
-	"py-2": {
-		"style": {
-			"paddingTop": 8,
-			"paddingBottom": 8
 		}
 	},
 	"py-1.5": {
@@ -277,12 +192,6 @@
 		"style": {
 			"paddingTop": 4,
 			"paddingBottom": 4
-		}
-	},
-	"text-white": {
-		"style": {
-			"--tw-text-opacity": 1,
-			"color": "rgb(255 255 255 / var(--tw-text-opacity))"
 		}
 	},
 	"text-black": {

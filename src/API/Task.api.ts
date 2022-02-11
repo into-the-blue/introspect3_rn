@@ -1,14 +1,28 @@
 import {COLLECTIONS, createDoc, retriveDoc, deleteDocFromObjectId} from '@/DB';
 import {ITask} from '@/types';
+import {getLocalFilePath} from '@/utils';
+
+const _taskWithLocalImgConverter = (task: ITask) => {
+  if (task.image.source === 'unsplash') return task;
+  return {
+    ...task,
+    image: {
+      ...task.image,
+      imageUrl: getLocalFilePath(task.image.imageUrl),
+    },
+  };
+};
 export class TaskAPI {
-  static createTask = (
+  static createTask = async (
     task: Pick<ITask, 'title' | 'image'>,
   ): Promise<ITask> => {
-    return createDoc(COLLECTIONS.Task, task);
+    const obj = (await createDoc(COLLECTIONS.Task, task)) as ITask;
+    return _taskWithLocalImgConverter(obj);
   };
 
-  static getAllTasks = () => {
-    return retriveDoc<ITask>(COLLECTIONS.Task);
+  static getAllTasks = async () => {
+    const tasks = await retriveDoc<ITask>(COLLECTIONS.Task);
+    return tasks.map(_taskWithLocalImgConverter);
   };
 
   static deleteTask = (id: string) => {

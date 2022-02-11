@@ -7,7 +7,7 @@ export const connect =
       store: any;
     } & {[key: string]: any},
   ) =>
-  (Comp: React.FC) => {
+  (Comp: React.FC<any>) => {
     function Composed(props: any) {
       const ObsComp = observer(Comp);
       useEffect(() => {

@@ -1,4 +1,5 @@
 import {toCamelCase, toSnakeCase} from '@/utils';
+import {ObjectId} from 'bson';
 
 import Realm from 'realm';
 import {
@@ -30,6 +31,18 @@ export const COLLECTIONS = {
 
 type TCOLL = typeof COLLECTIONS;
 
+const addMetaData = <T>(obj: T): T => {
+  const metaData = {
+    _id: new ObjectId(),
+    created_at: new Date(),
+    updated_at: new Date(),
+  };
+  return {
+    ...obj,
+    ...metaData,
+  };
+};
+
 export const retriveDoc = <T>(
   name: string,
   query?: string,
@@ -54,7 +67,7 @@ export const createDoc = <K extends keyof TCOLL, T>(
   new Promise((resolve, reject) => {
     try {
       DB.write(() => {
-        const res = DB.create(name, toSnakeCase(properties));
+        const res = DB.create(name, addMetaData(toSnakeCase(properties)));
         resolve(toCamelCase(res.toJSON()));
       });
     } catch (err) {

@@ -1,14 +1,9 @@
-import {IService} from '@/utils';
+import {getFilename, getLocalFilePath, IService} from '@/utils';
 import {CreateTaskStore} from '@/stores';
 import {NavigationProp} from '@react-navigation/native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {Alert} from 'react-native';
-import {
-  DocumentDirectoryPath,
-  copyFile,
-  exists,
-  getFSInfo,
-} from 'react-native-fs';
+import RNFS from 'react-native-fs';
 import {TaskAPI} from '@/API';
 import {ITask} from '@/types';
 export class CreateTaskService extends IService {
@@ -67,7 +62,7 @@ export class CreateTaskService extends IService {
         // no selected image
         return;
       }
-      const {fileSize, uri, height, width, type} = assets[0];
+      const {fileSize, uri, height, width, type, fileName} = assets[0];
       const imageUrl = await this.copyImageToAppDocDir(uri!, fileSize!);
       this.store.setLocalImage({
         imageUrl: imageUrl!,
@@ -79,27 +74,37 @@ export class CreateTaskService extends IService {
     } catch (err) {}
   };
 
+  /**
+   *
+   *
+   * @memberof CreateTaskService
+   * save to local DB
+   * convert local pth to filename
+   */
   saveImage = () => {
     return TaskAPI.createTask({
       title: this.store.title,
-      image: this.store.image!,
+      image: {
+        ...this.store.image!,
+        imageUrl: getFilename(this.store.image!.imageUrl),
+      },
     });
   };
 
   copyImageToAppDocDir = async (pth: string, fileSize: number) => {
-    const {freeSpace} = await getFSInfo();
+    const {freeSpace} = await RNFS.getFSInfo();
     if (freeSpace < fileSize) {
       Alert.alert('No enough space');
       return;
     }
-    const filename = pth.split('/').reverse()[0];
-    const destPth = DocumentDirectoryPath + '/' + filename;
-    const existed = await exists(destPth);
+    const filename = getFilename(pth);
+    const destPth = getLocalFilePath(filename);
+    const existed = await RNFS.exists(destPth);
     if (existed) {
       Alert.alert('File existed');
       return destPth;
     }
-    await copyFile(pth, destPth);
+    await RNFS.copyFile(pth, destPth);
     return destPth;
   };
 

@@ -60,6 +60,7 @@ export interface ITaskItem extends IMetadata {
 export interface ITaskImage {
   id?: string;
   source: 'unsplash' | 'local' | 'camera';
+  // if it is local image, only save filename to DB, when retrieve from DB, generate path with DocumentDirectoryPath
   imageUrl: string;
   width: number;
   height: number;

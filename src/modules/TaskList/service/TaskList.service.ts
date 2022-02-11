@@ -23,6 +23,12 @@ export class TaskListService extends IService {
     return new this(args);
   }
 
+  /**
+   *
+   *
+   * @memberof TaskListService
+   * query all tasks from db
+   */
   queryTasks = async () => {
     try {
       const tasks = await TaskAPI.getAllTasks();
