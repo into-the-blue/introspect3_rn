@@ -10,9 +10,11 @@
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
-    "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\""
+    "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\"",
+    "postinstall": "patch-package"
   },
   "dependencies": {
+    "@react-native-community/blur": "^3.6.0",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "bson": "^4.6.1",
@@ -31,7 +33,9 @@
     "react-native-image-colors": "^1.5.0",
     "react-native-image-picker": "^4.7.3",
     "react-native-image-resizer": "^1.4.5",
+    "react-native-linear-gradient": "^2.5.6",
     "react-native-localize": "^2.1.9",
+    "react-native-modal": "^13.0.0",
     "react-native-modalize": "^2.0.13",
     "react-native-reanimated": "^2.4.1",
     "react-native-safe-area-context": "^3.3.2",
@@ -60,7 +64,9 @@
     "eslint": "^7.14.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.66.2",
+    "patch-package": "^6.4.7",
     "postcss": "^8.4.6",
+    "postinstall-postinstall": "^2.1.0",
     "react-test-renderer": "17.0.2",
     "tailwindcss": "^3.0.19",
     "ts-node": "^10.4.0",
