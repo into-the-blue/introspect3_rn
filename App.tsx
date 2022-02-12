@@ -24,6 +24,8 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {StyleSheet} from 'react-native';
 import {TailwindProvider} from 'tailwind-rn';
 import utilities from './tailwind.json';
+import {setupSentry} from './src/configs';
+import * as Sentry from '@sentry/react-native';
 
 const Stack = createNativeStackNavigator();
 // https://ethercreative.github.io/react-native-shadow-generator/
@@ -41,8 +43,8 @@ const tailwindExtensions = {
     },
   },
 };
-
-export default function App() {
+setupSentry();
+const App = () => {
   return (
     <GestureHandlerRootView style={styles.container}>
       <TailwindProvider utilities={{...utilities, ...tailwindExtensions}}>
@@ -70,10 +72,12 @@ export default function App() {
       </TailwindProvider>
     </GestureHandlerRootView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
 });
+
+export default Sentry.wrap(App);
