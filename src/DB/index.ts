@@ -19,7 +19,7 @@ export const DB = new Realm({
     TaskItemSlotSchema,
     FeedbackSchema,
   ],
-  schemaVersion: 1,
+  schemaVersion: 2,
 });
 export const COLLECTIONS = {
   Task: TaskSchema.name,

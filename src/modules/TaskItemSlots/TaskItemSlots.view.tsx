@@ -13,7 +13,7 @@ interface ITaskItemSlotsProps {
 
 export const TaskItemSlots = (props: ITaskItemSlotsProps) => {
   const {controller} = props;
-  const {count} = props.store;
+  const {taskItem} = props.store;
   useEffect(() => {
     controller.viewDidMount();
 
@@ -21,12 +21,9 @@ export const TaskItemSlots = (props: ITaskItemSlotsProps) => {
       controller.viewWillUnmount();
     };
   }, [controller]);
-  return (
-    <View style={styles.container}>
-      <Text>{`${count}`}</Text>
-      <Button title="increase" onPress={props.controller.onPressButton} />
-    </View>
-  );
+  return <View style={styles.container}>
+
+  </View>;
 };
 TaskItemSlots.displayName = 'TaskItemSlots';
 const styles = StyleSheet.create({

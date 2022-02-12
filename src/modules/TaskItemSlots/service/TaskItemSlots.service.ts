@@ -1,6 +1,7 @@
 import {IService} from '@/utils';
 import {TaskItemSlotsStore} from '@/stores';
 import {NavigationProp} from '@react-navigation/native';
+import {ITaskItem} from '@/types';
 
 export class TaskItemSlotsService extends IService {
   store: TaskItemSlotsStore;
@@ -24,8 +25,12 @@ export class TaskItemSlotsService extends IService {
     return new this(args);
   }
 
-  increment = () => {
-    this.store.increment();
+  initListeners = () => {
+    this.on('TASK_ITEM_SLOTS_INITIAL_DATA', this.setDerivedData);
+  };
+
+  setDerivedData = ({taskItem}: {taskItem: ITaskItem}) => {
+    this.store.setTaskItem(taskItem);
   };
 
   resetStore = () => {

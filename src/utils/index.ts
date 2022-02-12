@@ -8,3 +8,4 @@ export * from './constants/design';
 export * from './constants/deviceInfo';
 export * from './getImageColor';
 export * from './fs';
+export * from './logger';

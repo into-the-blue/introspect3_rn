@@ -10,10 +10,9 @@ export class TaskItemSlotsController extends IController {
     return new this(params);
   }
 
-  onPressButton = () => {
-    this.service.increment();
+  viewDidMount = () => {
+    this.service.initListeners();
   };
-  viewDidMount = () => {};
   viewWillUnmount = () => {
     this.service.cleanListeners();
     this.service.resetStore();

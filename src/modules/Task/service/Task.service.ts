@@ -65,7 +65,8 @@ export class TaskService extends IService {
    * @memberof TaskService
    * when press task item
    */
-  goToItemSlot = (item: ITaskItem) => {
+  goToItemSlot = (taskItem: ITaskItem) => {
+    this.trigger('TASK_ITEM_SLOTS_INITIAL_DATA', {taskItem});
     this.navigation.navigate('TaskItemSlots');
   };
 

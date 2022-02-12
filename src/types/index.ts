@@ -47,6 +47,7 @@ export interface ITaskItemSlot extends IMetadata {
   taskItemId: string;
   feedbacks?: TFeedback[];
   content: string;
+  finished: boolean;
   delayedTimes: number;
   delayedOn: string[];
 }

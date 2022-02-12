@@ -9,6 +9,7 @@ export const TaskItemSlotSchema: ObjectSchema = {
     //
     task_item_id: 'objectId',
     content: 'string',
+    finished: {type: 'bool', default: false},
     delayed_times: {type: 'int', default: 0},
     delayed_on: {type: 'date[]', default: []},
   },
