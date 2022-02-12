@@ -21,12 +21,14 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, LogBox} from 'react-native';
 import {TailwindProvider} from 'tailwind-rn';
 import utilities from './tailwind.json';
 import {setupSentry} from './src/configs';
 import * as Sentry from '@sentry/react-native';
+LogBox.ignoreLogs(['Require cycle:']);
 
+setupSentry();
 const Stack = createNativeStackNavigator();
 // https://ethercreative.github.io/react-native-shadow-generator/
 const tailwindExtensions = {
@@ -43,7 +45,6 @@ const tailwindExtensions = {
     },
   },
 };
-setupSentry();
 const App = () => {
   return (
     <GestureHandlerRootView style={styles.container}>

@@ -1,5 +1,17 @@
-import {logger, consoleTransport, configLoggerType} from 'react-native-logs';
+import {
+  logger,
+  consoleTransport,
+  configLoggerType,
+  transportFunctionType,
+  sentryTransport,
+} from 'react-native-logs';
+import * as Sentry from '@sentry/react-native';
 
+const myTransport: transportFunctionType = props => {
+  consoleTransport(props);
+  sentryTransport(props);
+  return true;
+};
 const config: configLoggerType = {
   levels: {
     debug: 0,
@@ -8,8 +20,9 @@ const config: configLoggerType = {
     error: 3,
   },
   severity: 'debug',
-  transport: consoleTransport,
+  transport: myTransport,
   transportOptions: {
+    SENTRY: Sentry,
     colors: {
       info: 'blueBright',
       warn: 'yellowBright',
