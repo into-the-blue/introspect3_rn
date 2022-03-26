@@ -1,6 +1,6 @@
 import {ReplaySubject, of, from} from 'rxjs';
 import {mergeMap, switchMap, take} from 'rxjs/operators';
-import {TFutureTask} from './type';
+import {TFutureTask, HandlerFunction} from './type';
 import {map2Array, toObservable, isDev} from './util';
 import {LOG} from '../logger';
 const xenoLog = LOG.extend('XENO');
@@ -51,7 +51,6 @@ class Handlers {
  * implementation 2: each time create a new subject
  */
 
-type HandlerFunction<T, K extends keyof T> = (params: T[K]) => void;
 export class Xeno<T> {
   events: Map<string, Handlers> = new Map();
   _futureEvents: Map<string, TFutureTask> = new Map();

@@ -5,7 +5,7 @@ import {getImageColors} from '@/utils';
 import chroma from 'chroma-js';
 import RNFS from 'react-native-fs';
 import {TaskItemAPI} from '@/API';
-import {ITaskItem} from '@/types';
+import {ITaskItem} from '@/types/task.type';
 
 export class CreateTaskItemService extends IService {
   store: CreateTaskItemStore;

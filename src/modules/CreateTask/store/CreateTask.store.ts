@@ -1,6 +1,6 @@
 import {observable, action, makeObservable} from 'mobx';
 import {IStore} from '@/utils';
-import {ITaskImage} from '@/types';
+import {ITaskImage} from '@/types/task.type';
 export class CreateTaskStore extends IStore {
   name?: string = undefined;
   constructor() {

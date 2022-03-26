@@ -1,5 +1,5 @@
 import {COLLECTIONS, createDoc, retriveDoc, deleteDocFromObjectId} from '@/DB';
-import {ITask} from '@/types';
+import {ITask} from '@/types/task.type';
 import {getLocalFilePath} from '@/utils';
 
 const _taskWithLocalImgConverter = (task: ITask) => {

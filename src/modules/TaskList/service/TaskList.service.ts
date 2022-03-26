@@ -1,6 +1,6 @@
 import {IService} from '@/utils';
 import {TaskListStore} from '@/stores';
-import {ITask} from '@/types';
+import {ITask} from '@/types/task.type';
 import {NavigationProp} from '@react-navigation/native';
 import {TaskAPI} from '@/API';
 

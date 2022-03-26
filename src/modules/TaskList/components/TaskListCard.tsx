@@ -1,7 +1,7 @@
 import React from 'react';
 import {observer} from 'mobx-react-lite';
 import {StyleSheet, View, Pressable} from 'react-native';
-import {ITask} from '@/types';
+import {ITask} from '@/types/task.type';
 import {Text, Image, Button} from '@/components';
 interface IProps {
   task: ITask;

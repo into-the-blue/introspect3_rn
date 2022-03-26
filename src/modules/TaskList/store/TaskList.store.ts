@@ -1,6 +1,6 @@
 import {observable, action, makeObservable} from 'mobx';
 import {IStore} from '@/utils';
-import {ITask} from '@/types';
+import {ITask} from '@/types/task.type';
 export class TaskListStore extends IStore {
   constructor() {
     super();

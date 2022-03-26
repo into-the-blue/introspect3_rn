@@ -1,5 +1,5 @@
 import {COLLECTIONS, retriveDoc, createDoc} from '@/DB';
-import {ITaskItem} from '@/types';
+import {ITaskItem} from '@/types/task.type';
 import {ObjectId} from 'bson';
 
 export class TaskItemAPI {
