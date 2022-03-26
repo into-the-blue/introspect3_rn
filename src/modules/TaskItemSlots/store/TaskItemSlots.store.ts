@@ -1,6 +1,6 @@
 import {observable, action, makeObservable} from 'mobx';
 import {IStore} from '@/utils';
-import {ITaskItem, ITaskItemSlot} from '@/types';
+import {ITaskItem, ITaskItemSlot} from '@/types/task.type';
 export class TaskItemSlotsStore extends IStore {
   name?: string = undefined;
   constructor() {
