@@ -7,7 +7,7 @@ cwd = Path(__file__).parent.parent
 module_path = cwd/'src'/'modules'
 
 temp_module_pth = Path(__file__).parent/'moduleTemplate'
-type_hook_pth = cwd/'src'/'types'/'index.ts'
+type_hook_pth = cwd/'src'/'types'/'client.type.ts'
 store_hook_pth = cwd/'src'/'stores'/'index.ts'
 service_hook_pth = cwd/'src'/'services'/'index.ts'
 module_hook_pth = module_path/'index.ts'
@@ -179,7 +179,7 @@ def linkConfig(module_name, upper_cased):
     _writeLineUpon(
         app_hook_pth, {APP_PAGE_HOOK: app_str1, APP_NAVIGATION_HOOK: app_str2})
 
-    # src/types/index.ts
+    # src/types/client.ts
     type_str1 = "import {[ModuleName]Events} from '../modules/[ModuleName]';"
     type_str1 = type_str1.replace('[ModuleName]', module_name)
 
