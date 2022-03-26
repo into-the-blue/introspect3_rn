@@ -1,6 +1,7 @@
 import {xeno} from './globalXeno';
 import {Xeno} from './xeno';
-import {IEvents} from '../types';
+import {HandlerFunction} from './xeno/type';
+import {IEvents} from '../types/client.type';
 import {Subscription} from 'rxjs';
 export class IService {
   private xeno: Xeno<IEvents>;
@@ -9,7 +10,10 @@ export class IService {
   constructor() {
     this.xeno = xeno;
   }
-  on = <K extends keyof IEvents>(eventName: K, handler: Function) => {
+  on = <K extends keyof IEvents>(
+    eventName: K,
+    handler: HandlerFunction<IEvents, K>,
+  ) => {
     const unlisten = this.xeno.on(eventName, handler);
     this._unlistens.push(unlisten);
     return unlisten;

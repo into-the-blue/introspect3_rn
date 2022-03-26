@@ -5,7 +5,7 @@ import {TaskStore} from './store/Task.store';
 import {TaskController} from './Task.controller';
 import {CreateItemButton} from './components';
 import {Text, TaskItem} from '@/components';
-import {ITaskItem} from '@/types';
+import {ITaskItem} from '@/types/task.type';
 import {useTailwind} from 'tailwind-rn/dist';
 interface ITaskProps {
   navigation: NavigationProp<any>;

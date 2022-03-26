@@ -2,7 +2,11 @@ import chroma from 'chroma-js';
 import {uniq} from 'lodash';
 import ImageColor from 'react-native-image-colors';
 import {omit} from './util';
-import {AndroidImageColors, IOSImageColors, ImageColors} from '@/types';
+import {
+  AndroidImageColors,
+  IOSImageColors,
+  ImageColors,
+} from '@/types/image.type';
 
 const _pickAndroidSecondaryColor = (colors: AndroidImageColors): string => {
   const candidates = Object.values(

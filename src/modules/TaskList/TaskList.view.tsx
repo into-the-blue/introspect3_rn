@@ -3,7 +3,7 @@ import {View, StyleSheet, FlatList} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {TaskListStore} from './store/TaskList.store';
 import {TaskListController} from './TaskList.controller';
-import {ITask} from '@/types';
+import {ITask} from '@/types/task.type';
 import {TaskListCard, CreateNewTask} from './components';
 interface ITaskListProps {
   navigation: NavigationProp<any>;

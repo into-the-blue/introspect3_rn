@@ -1,6 +1,6 @@
 import {IController} from '@/utils';
 import {TaskListService} from '@/services';
-import {ITask} from '@/types';
+import {ITask} from '@/types/task.type';
 export class TaskListController extends IController {
   service: TaskListService;
   constructor({service}: {service: TaskListService}) {

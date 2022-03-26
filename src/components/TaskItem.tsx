@@ -1,4 +1,4 @@
-import {ITaskItem} from '@/types';
+import {ITaskItem} from '@/types/task.type';
 import {observer} from 'mobx-react-lite';
 import React from 'react';
 import {Pressable, View} from 'react-native';

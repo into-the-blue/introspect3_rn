@@ -2,7 +2,7 @@ import {IService} from '@/utils';
 import {TaskStore} from '@/stores';
 import {NavigationProp} from '@react-navigation/native';
 import {TaskItemAPI} from '@/API';
-import {ITaskItem} from '@/types';
+import {ITaskItem} from '@/types/task.type';
 
 export class TaskService extends IService {
   store: TaskStore;

@@ -5,7 +5,7 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import {Alert} from 'react-native';
 import RNFS from 'react-native-fs';
 import {TaskAPI} from '@/API';
-import {ITask} from '@/types';
+import {ITask} from '@/types/task.type';
 export class CreateTaskService extends IService {
   store: CreateTaskStore;
   navigation: NavigationProp<any>;
